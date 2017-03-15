@@ -1,2 +1,0 @@
-# mythreejs
-毕设
