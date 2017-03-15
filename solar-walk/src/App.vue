@@ -1,26 +1,62 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <div id="viewport"
+         class="viewport"
+         @touchstart="onTouchStart"
+         @touchmove="onTouchMove"
+         @touchend="onTouchEnd"
+    >
+      <first></first>
+      <second></second>
+      <third></third>
+    </div>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import first from './components/first'
+import second from './components/second'
+import third from './components/third'
 
 export default {
   name: 'app',
-  components: {Hello}
+  components: {first,second,third},
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    onTouchStart(){
+      console.log("start");
+    },
+    onTouchMove(){
+      console.log("move");
+    },
+    onTouchEnd(){
+      console.log("end");
+    }
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less" rel="stylesheet/less">
+  @import "utils/reset";
+  html, body {
+    height: 100%;
+    position: relative;
+  }
+  #app {
+    height: 100%;
+    display: flex;
+    .viewport{
+      width: 100%;
+      height:300%;
+      display: -webkit-flex;
+      flex-direction:column;
+      overflow: hidden;
+      -webkit-transform: translate3d(0,0,0);
+      position: relative;
+    }
+  }
 </style>
