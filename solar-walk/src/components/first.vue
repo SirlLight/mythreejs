@@ -15,7 +15,7 @@ export default {
   .first{
     width: 100%;
     height: 100%;
-    background: url("../assets/bg1.png");
+    background: url("../assets/4.jpg");
     background-size: 100%;
   }
 </style>
