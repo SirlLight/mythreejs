@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	    *{
+	        margin: 0;
+	        padding: 0;
+	    }
+	    body{
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        right: 0;
+	        bottom: 0;
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -khtml-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	    }
+	    div{
+	        display: flex;
+	        overflow: hidden;
+	        height: 100%;
+	    }
+	    ul{
+	        width: 100%;
+	        -webkit-transform: translateY(0px);
+	        -webkit-transition: -webkit-transform 500ms;
+	    }
+	    ul li{
+	        width: 100%;
+	        height: 100%;
+
+	    }
+	    ul li:nth-child(1){
+	        background-color: #cc99ff;
+	        background-size: contain;
+	    }
+	    ul li:nth-child(2){
+	        background-color: #ea445a;
+	        background-size: contain;
+	    }
+	    ul li:nth-child(3){
+	        background-color: #cc99ff;
+	        background-size: contain;
+	    }
+	    ul li:nth-child(4){
+	        position: relative;
+	        background-color: #ea445a;
+	        background-size: contain;
+	        text-align: center;
+	    }
+	    ul li:nth-child(4) p{
+	        position: absolute;
+	        bottom: 0;
+	        width: 100%;
+	        -webkit-transform: translateY(0px);
+	        -webkit-transition: -webkit-transform 500ms;
+	    }
+	    ul li:nth-child(4) i{
+	        font-style: normal;
+	        font-size: 35px;
+	        color: #404040;
+	        cursor: pointer;
+	    }
+	</style>
+</head>
+<body>
+<div>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>
+        4
+            <p id="backTop"><i>&uarr;</i></p >
+        </li>
+    </ul>
+</div>
+</body>
+<script>
+	var height = document.body.clientHeight;
+	var Y = 0;
+	var ul = document.getElementById('ul');
+	var back = document.getElementById('backTop');
+	var lis = ul.getElementsByTagName('li').length;
+	window.onresize = function () {
+	    height = document.body.clientHeight;
+	    var Top = Y * height;
+	    ul.style.webkitTransform = 'translate(0px,'+Top+'px)';
+	};
+	window.onload = function () {
+	    var backTop = 0;
+	    var firstY,lastY = null;
+	    var flag = false;
+	    var UlTop = 0;
+	    window.onmousewheel = function (e) {
+	        if(e.deltaY>=100){
+	            Down();
+	        }else {
+	            Up();
+	        }
+	    };
+	    function Down() {
+	        Y--;
+	        var Top = Y * height;
+	        if(Top <= -(lis*height)){
+	            Y = -(lis-1);
+	            return
+	        }
+	        UlTop = Top;
+	        ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
+	    }
+	    function Up() {
+	        Y++;
+	        var Top = Y *height;
+	        if(Top > 0){
+	            Y = 0;
+	            return
+	        }
+	        UlTop = Top;
+	        ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
+	    }
+	    document.addEventListener('touchstart',function (e) {
+	        flag = true;
+	        firstY = e.touches[0].clientY;
+	    });
+	    document.addEventListener('touchmove',function (e) {
+	        if(flag){
+	            lastY = e.touches[0].clientY;
+	            var Top = firstY - lastY;
+	            if(Top > 0){
+	                if(UlTop <= -(lis-1)*height){
+	                    return
+	                }
+	            }else {
+	                if(UlTop >= 0){
+	                    return
+	                }
+	            }
+	            ul.style.webkitTransform = 'translate(0px,'+ (UlTop-Top) +'px)';
+	        }
+	    });
+	    document.addEventListener('touchend',function (e) {
+	        lastY = e.changedTouches[0].clientY;
+	        if(flag){
+	            move(firstY,lastY);
+	        }
+	    });
+	    function move(firstY,lastY) {
+	        if(firstY - lastY > 0){
+	            Down();
+	        }else {
+	            Up();
+	        }
+	    }
+	    setInterval(function () {
+	        backTop-=5;
+	        if(backTop <= -50){
+	            backTop=20;
+	        }
+	        back.style.webkitTransform = 'translate(0px,'+ backTop +'px)';
+	    },110);
+	    back.onclick = function () {
+	        Y = 0;
+	        var Top = Y *height;
+	        ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
+	    }
+	}
+</script>
+</html>
