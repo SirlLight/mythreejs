@@ -295,14 +295,13 @@ function init() {
 
     window.addEventListener('resize', this.onWindowResize, false);
     canvas.addEventListener('mousedown', this.onDocumentMouseDown, false);
+    canvas.addEventListener('doubleclick', this.onCanvasDoubleclick , false);
 
     id=requestAnimationFrame(move);
 }
 
-function mouseRender() {
-    init();
-    renderer.render(scene, camera);
-    requestAnimationFrame(mouseRender);
+function onCanvasDoubleclick() {
+    console.log(camera);
 }
 
 function toggle(){
@@ -388,8 +387,6 @@ function onDocumentMouseDown(event){
             else{
                 p=stars[tempIndex].Mesh.position.z+n;
             }*/
-
-            camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 100000);
             camera.position.set(o+n,r+n,p+n);
             camera.lookAt(new THREE.Vector3(stars[tempIndex].Mesh.position.x,stars[tempIndex].Mesh.position.y,stars[tempIndex].Mesh.position.z));
             console.log("camera.position:");
