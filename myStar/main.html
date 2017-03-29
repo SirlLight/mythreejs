@@ -38,9 +38,9 @@
 			<div id="controlBtn" class="controlBtn"></div>
 			<canvas id="main" bn-document-click="handleClick( $event )"></canvas>
 		</div>
-		<div class="cover">
-			<input id="tempFlag" type="hidden" ng-model="flag">
-			<div class="header">
+		<input id="tempFlag" type="hidden" ng-model="flag">
+		<div class="header">
+			<div class="headerWrapper">
 				<i class="close"></i>
 				<p class="title">
 					{{starInfo.title}}
@@ -48,39 +48,42 @@
 					<span class="title3" style="display: none;">- 事实与特征</span>
 				</p>
 			</div>
-			<div class="wrapper">
-				<ul class="sidebar">
-					<li value="1"><i class="first active"></i></li>
-					<li value="2"><i class="second"></i></li>
-					<li value="3"><i class="third"></i></li>
-					<li value="4"><i class="forth"></i></li>
-				</ul>
-				<div class="content">
-					<div class="content1" style="display: block">
-						<div class="contentWrapper">
-							<div class="tempWrapper">
-								<div class="starImg"></div>
-								<div class="middle">
-									<p class="title">{{starInfo.content1.name}}</p>
-									<p class="english">{{starInfo.content1.english}}</p>
-								</div>
-								<p class="des">{{starInfo.content1.des}}</p>
-							</div>
-						</div>
-					</div>
-					<div class="content2">
-						<p ng-repeat="content in starInfo.content2">{{content}}</p>
-					</div>
-					<div class="content3">
-						<div class="table">
-							<p class="line" ng-repeat="(key,item) in starInfo.content3">
-								<span class="one">{{key}}</span>
-								<span>{{item}}</span>
-							</p>
-						</div>
-					</div>
-					<div class="content4">inner</div>
+		</div>
+		<ul class="sidebar">
+			<li value="1"><i class="first active"></i></li>
+			<li value="2"><i class="second"></i></li>
+			<li value="3"><i class="third"></i></li>
+			<li value="4"><i class="forth"></i></li>
+		</ul>
+		<div class="content">
+			<div class="tempWrapper">
+				<div class="pull">
+					<i class="pullLogo"></i>
 				</div>
+				<div class="content1" style="display: block">
+					<div class="contentWrapper">
+						<div class="tempWrapper">
+							<div class="starImg"></div>
+							<div class="middle">
+								<p class="title">{{starInfo.content1.name}}</p>
+								<p class="english">{{starInfo.content1.english}}</p>
+							</div>
+							<p class="des">{{starInfo.content1.des}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="content2">
+					<p ng-repeat="content in starInfo.content2">{{content}}</p>
+				</div>
+				<div class="content3">
+					<div class="table">
+						<p class="line" ng-repeat="(key,item) in starInfo.content3">
+							<span class="one">{{key}}</span>
+							<span>{{item}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="content4">inner</div>
 			</div>
 		</div>
 	</div>
@@ -105,11 +108,35 @@
 		});
 		$('.close').click(function (e) {
 			e.preventDefault();
-			document.querySelector(".cover").style.display="none";
+			var dis3=$('.sidebar').width();
+			$(".content").animate({left:dis3});
+			document.querySelector(".header").style.display="none";
+			document.querySelector(".sidebar").style.display="none";
+			document.querySelector(".content").style.display="none";
 			$(".sidebar>li:eq(0)").children("i").addClass('active');
 			$(".sidebar>li:eq(0)").siblings().children("i").removeClass("active");
 			$('.content1').attr('style','display: block;');
 			$('.content1').siblings('div').removeAttr("style");
+			document.querySelector(".controlBtn").style.display="block";
+			stars.splice(tempIndex,0,tempStars);
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
+			camera.position.set(-200, 50, 0);
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+		});
+		$('.pullLogo').click(function () {
+			var dis1=$('.content').width();
+			var dis2=$('.pullLogo').width();
+			var dis3=$('.sidebar').width();
+			var oldDis=(dis1-dis2);
+			var newDis1=oldDis.toFixed(3);
+			var newDis2=oldDis.toFixed(3)+'px';
+			var m=$(".content").css("left");
+			if(newDis2 == m){
+				$(".content").animate({left:dis3});
+			}
+			else{
+				$(".content").animate({left:newDis1});
+			}
 		});
 	</script>
 	

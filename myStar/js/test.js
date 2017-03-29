@@ -1,8 +1,9 @@
 window.flag;
 var scene = undefined,
-    renderer = undefined,
-    camera = undefined,
-    particleSystem = undefined,
+    renderer = undefined;
+
+window.camera = undefined;
+var particleSystem = undefined,
     control = undefined;
 
 var Sun = undefined,//太阳
@@ -18,12 +19,11 @@ var Sun = undefined,//太阳
 var moonOrbit;//月球轨道
 var sunSprite,sunMaterial;//太阳光
 var planetName;
-var stars = [],ringArr=[],nameArr=[];
+window.stars = [];
+var ringArr=[],nameArr=[];
 var controls;
 var Devices,isDeviceing=0;
 var controlBtn=document.getElementById("controlBtn");
-
-var cameraFar = 100000; //镜头视距
 
 var starNames = {}; //指向显示的星星名字对象
 var displayName = undefined; //当前显示名字
@@ -35,10 +35,13 @@ var canvas = document.getElementById('main');
 var raycaster=new THREE.Raycaster(); //指向镭射
 var mouse = new THREE.Vector2(); //鼠标屏幕向量
 
-var setZero=0;
+var id=null;
+var tempIndex;
 
-init();
-animate();
+var tempStars=[];
+
+//init();
+//animate();
 
 function init() {
     /*canvasSize*/
@@ -55,9 +58,9 @@ function init() {
     scene = new THREE.Scene();
 
     /*camera*/
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, cameraFar);
-    camera.position.set(-200, 50, 0);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
+    camera.position.set(200, 50, 0);
+    //camera.lookAt(new THREE.Vector3(0, 0, 0));
     scene.add(camera);
 
     /*orbitControls*/
@@ -293,18 +296,24 @@ function init() {
     window.addEventListener('resize', this.onWindowResize, false);
     canvas.addEventListener('mousedown', this.onDocumentMouseDown, false);
 
+    id=requestAnimationFrame(move);
+}
+
+function mouseRender() {
+    init();
     renderer.render(scene, camera);
+    requestAnimationFrame(mouseRender);
 }
 
 function toggle(){
     isDeviceing === 0 ? controls.update() : Devices.update();
     /*requestAnimationFrame(function () {
-        return toggle();
-    });*/
+     return toggle();
+     });*/
 }
 
 function onDocumentMouseDown(event){
-    event.preventDefault();
+    /* event.preventDefault();*/
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
@@ -315,12 +324,17 @@ function onDocumentMouseDown(event){
         var obj = intersects[0].object;
         var name = obj.name;
         if(name){
+            if (id !== null) {
+                cancelAnimationFrame(id);
+                id = null;
+            }
             window.flag=name;
-            document.querySelector(".cover").style.display="flex";
+            document.querySelector(".header").style.display="block";
+            document.querySelector(".sidebar").style.display="flex";
+            document.querySelector(".content").style.display="block";
             document.getElementById("tempFlag").value=name;
+            document.querySelector(".controlBtn").style.display="none";
             console.log("after click");
-            //stars[name].Mesh.position.set(obj.position.x,obj.position.y,obj.position.z);
-            var tempIndex;
             switch (name) {
                 case "水星":
                     tempIndex=0;
@@ -349,11 +363,42 @@ function onDocumentMouseDown(event){
                 default:
                     break;
             };
-            stars[tempIndex].speed=0;
-            stars[tempIndex].Mesh.speed=0;
-            stars[tempIndex].angle=0;
-            stars[tempIndex].Mesh.angle=0;
-            console.log(stars[tempIndex]);
+            tempStars=stars[tempIndex];
+            stars.splice(tempIndex,1);
+            //r^3
+            var rCube=(stars[tempIndex].volume * 3)/(4 * Math.PI );
+            //r
+            var r=Math.pow(rCube, 3);
+            //星球鱼相机之间的距离
+            var axisZ=(5*r)/3;
+            //相机视角与星球切线的长度
+            var m=(4*r)/3;
+            //x和z轴上的差值
+            var n=(4*m)/5;
+            //相机的x
+            //var o=stars[tempIndex].Mesh.position.x+n;
+            var o=stars[tempIndex].Mesh.position.x-10*r;
+            //相机的z
+            var p;
+            //p=stars[tempIndex].Mesh.position.z+n;
+            p=stars[tempIndex].Mesh.position.z-10*r;
+            /*if(stars[tempIndex].Mesh.position.z>0){
+                p=stars[tempIndex].Mesh.position.z-n;
+            }
+            else{
+                p=stars[tempIndex].Mesh.position.z+n;
+            }*/
+
+            camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 100000);
+            camera.position.set(o+n,r+n,p+n);
+            camera.lookAt(new THREE.Vector3(stars[tempIndex].Mesh.position.x,stars[tempIndex].Mesh.position.y,stars[tempIndex].Mesh.position.z));
+            console.log("camera.position:");
+            console.log(camera.position);
+            console.log("star.position:");
+            console.log(stars[tempIndex].Mesh.position);
+            renderer.render(scene, camera);
+            id=requestAnimationFrame(move);
+            intersects=undefined;
         }
     }
 }
@@ -487,13 +532,10 @@ function move() {
     Sun.planetName.lookAt(camera.position);
     /*月球自转*/
     Moon.rotation.y += .03;
-}
 
-function animate() {
-    requestAnimationFrame(animate);
-    toggle();
-    move();
     renderer.render(scene, camera);
+
+    id=requestAnimationFrame(move);
 }
 
 function moveEachStar(star) {
@@ -534,5 +576,8 @@ function onWindowResize(){
 }
 
 function setCameraPos(index) {
+    console.log("setCameraPos");
     camera.position.set(stars[index].Mesh.position.x,stars[index].Mesh.position.y,stars[index].Mesh.position.z);
+    console.log(camera.position);
+    camera.lookAt(new THREE.Vector3(stars[index].Mesh.position.x,stars[index].Mesh.position.y,stars[index].Mesh.position.z))
 }

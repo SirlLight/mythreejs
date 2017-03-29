@@ -38,18 +38,17 @@ export default {
     onload(){
       this.pageHeight = document.body.clientHeight;
       this.viewport = document.getElementById('viewport');
-      this.pageViewLen = this.viewport.getElementsByTagName('div').length;
+      this.pageViewLen = this.viewport.querySelectorAll('.pageView').length;
       this.maxHeight = - this.pageHeight * (this.pageViewLen-1);
       this.viewport.style.webkitTransform='translate(0px,0px)';
+      console.log(this.viewport.getElementsByTagName('div'));
       console.log("pageViewLen:"+this.pageViewLen);
     },
     onTouchStart(e){
       this.startY=e.touches[0].clientY;
       this.isMove=true;
-      console.log(this.startY);
     },
     onTouchMove(e){
-      console.log("move");
       let self=this;
       if(self.isMove){
         self.endY=e.touches[0].clientY;
@@ -68,7 +67,6 @@ export default {
     },
     onTouchEnd(e){
       this.endY=e.changedTouches[0].clientY;
-      console.log("endY:"+this.endY);
       if(this.isMove){
         this.transform(this.startY,this.endY);
       }
@@ -77,7 +75,6 @@ export default {
       let self=this;
       let temp;
       if(start-end>0) {
-        console.log("down");
         self.pageNum--;
         temp=self.pageNum*self.pageHeight;
         if(temp<=-(self.pageViewLen*self.pageHeight)){
@@ -85,7 +82,6 @@ export default {
           return;
         }
       }else{
-        console.log("up");
         self.pageNum++;
         temp=self.pageNum*self.pageHeight;
         if(temp>0){
@@ -93,16 +89,16 @@ export default {
           return;
         }
       }
-      console.log(self.pageNum);
       self.currentPosition=temp;
       self.viewport.style.webkitTransform='translate(0px,'+temp+'px)';
     }
   },
   mounted(){
+    console.log("主页面mounted："+new Date());
     this.onload();
   },
   created(){
-    /*this.onload();*/
+    console.log("主页面created："+new Date());
   }
 }
 </script>

@@ -12,24 +12,6 @@ body {
   right: 0;
   bottom: 0;
   height: 100%;
-  /*div {
-      height: 100%;
-      display: -webkit-flex;
-      overflow: hidden;
-      ul {
-          width: 100%;
-          -webkit-transform: translateY(0px);
-          -webkit-transition: -webkit-transform 500ms;
-          li {
-              width: 100%;
-              height: 100%;
-              img{
-                  width: 100%;
-                  height: 100%;
-              }
-          }
-      }
-  }*/
 }
 html .main,
 body .main {
@@ -38,6 +20,16 @@ body .main {
   overflow: hidden;
   position: relative;
   /*background: #ea445a;*/
+  /*.cover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      flex-direction: column;
+    }*/
 }
 html .main .universe,
 body .main .universe {
@@ -60,36 +52,34 @@ html .main .hide,
 body .main .hide {
   display: none;
 }
-html .main .cover,
-body .main .cover {
+html .main .header,
+body .main .header {
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  flex-direction: column;
-}
-html .main .cover .header,
-body .main .cover .header {
-  width: 100%;
+  height: 2.4rem;
   font-size: 16px;
   line-height: 2.4rem;
   color: #fff;
   font-weight: bold;
-  height: 2.4rem;
-  position: relative;
   text-align: center;
   border-bottom: 1px solid #e1e1e1;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
 }
-html .main .cover .header .title,
-body .main .cover .header .title {
+html .main .header .headerWrapper,
+body .main .header .headerWrapper {
+  position: relative;
+  width: 100%;
+}
+html .main .header .headerWrapper .title,
+body .main .header .headerWrapper .title {
   width: 100%;
   text-align: center;
 }
-html .main .cover .header .close,
-body .main .cover .header .close {
+html .main .header .headerWrapper .close,
+body .main .header .headerWrapper .close {
   display: flex;
   position: absolute;
   left: 0;
@@ -99,109 +89,143 @@ body .main .cover .header .close {
   justify-content: center;
   align-items: center;
 }
-html .main .cover .header .close:after,
-body .main .cover .header .close:after {
+html .main .header .headerWrapper .close:after,
+body .main .header .headerWrapper .close:after {
   content: '';
   background: transparent url('../img/index/search-back.png') no-repeat center;
   width: 0.6rem;
   height: 1.2rem;
   background-size: 100% 100%;
 }
-html .main .cover .wrapper,
-body .main .cover .wrapper {
-  width: 100%;
-  display: flex;
+html .main .sidebar,
+body .main .sidebar {
+  position: absolute;
+  top: 2.4rem;
+  left: 0;
+  bottom: 0;
   flex-grow: 1;
-}
-html .main .cover .wrapper .sidebar,
-body .main .cover .wrapper .sidebar {
   width: 4.8rem;
-  display: flex;
+  background: rgba(0, 0, 0, 0.7);
+  /*display: flex;*/
+  display: none;
   flex-direction: column;
   border-right: 1px solid #e1e1e1;
 }
-html .main .cover .wrapper .sidebar li,
-body .main .cover .wrapper .sidebar li {
+html .main .sidebar li,
+body .main .sidebar li {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html .main .cover .wrapper .sidebar li i,
-body .main .cover .wrapper .sidebar li i {
+html .main .sidebar li i,
+body .main .sidebar li i {
   width: 2.4rem;
   height: 2.4rem;
 }
-html .main .cover .wrapper .sidebar li .first,
-body .main .cover .wrapper .sidebar li .first {
+html .main .sidebar li .first,
+body .main .sidebar li .first {
   background: transparent url('../img/index/list_star.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .first.active,
-body .main .cover .wrapper .sidebar li .first.active {
+html .main .sidebar li .first.active,
+body .main .sidebar li .first.active {
   background: transparent url('../img/index/star.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .second,
-body .main .cover .wrapper .sidebar li .second {
+html .main .sidebar li .second,
+body .main .sidebar li .second {
   background: transparent url("../img/index/list_info.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .second.active,
-body .main .cover .wrapper .sidebar li .second.active {
+html .main .sidebar li .second.active,
+body .main .sidebar li .second.active {
   background: transparent url('../img/index/info.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .third,
-body .main .cover .wrapper .sidebar li .third {
+html .main .sidebar li .third,
+body .main .sidebar li .third {
   background: transparent url("../img/index/list_feature.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .third.active,
-body .main .cover .wrapper .sidebar li .third.active {
+html .main .sidebar li .third.active,
+body .main .sidebar li .third.active {
   background: transparent url('../img/index/feature.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .forth,
-body .main .cover .wrapper .sidebar li .forth {
+html .main .sidebar li .forth,
+body .main .sidebar li .forth {
   background: transparent url("../img/index/list_inner.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .sidebar li .forth.active,
-body .main .cover .wrapper .sidebar li .forth.active {
+html .main .sidebar li .forth.active,
+body .main .sidebar li .forth.active {
   background: transparent url('../img/index/inner.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .wrapper .content,
-body .main .cover .wrapper .content {
+html .main .content,
+body .main .content {
+  position: absolute;
+  top: 2.4rem;
+  left: 4.8rem;
+  right: 0;
+  bottom: 0;
   width: 100%;
   overflow: scroll;
   overflow-y: visible;
+  overflow-x: visible;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
 }
-html .main .cover .wrapper .content .content1,
-body .main .cover .wrapper .content .content1 {
+html .main .content .tempWrapper,
+body .main .content .tempWrapper {
+  position: relative;
+  height: 100%;
+  /*background: #6600CC;*/
+  display: flex;
+}
+html .main .content .tempWrapper .pull,
+body .main .content .tempWrapper .pull {
+  /*background: #FF0033;*/
+  height: 100%;
+  border-right: solid #fff 1px;
+  border-left: solid #fff 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+html .main .content .tempWrapper .pull .pullLogo,
+body .main .content .tempWrapper .pull .pullLogo {
+  width: 2.4rem;
+  height: 2.4rem;
+  background: transparent url('../img/index/search-back.png') no-repeat center;
+  background-size: 0.6rem 1.2rem;
+}
+html .main .content .tempWrapper .content1,
+body .main .content .tempWrapper .content1 {
   display: none;
   flex-grow: 1;
-  width: 100%;
+  /*width: 100%;*/
   height: 100%;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper,
-body .main .cover .wrapper .content .content1 .contentWrapper {
+html .main .content .tempWrapper .content1 .contentWrapper,
+body .main .content .tempWrapper .content1 .contentWrapper {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   line-height: 32px;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .starImg,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .starImg {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .starImg,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .starImg {
   width: 4.26666667rem;
   height: 4.26666667rem;
   flex-shrink: 0;
@@ -209,35 +233,35 @@ body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .star
   background: url("../img/0.png") no-repeat;
   background-size: 100%;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper p,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper p {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper p,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper p {
   font-size: 18px;
   font-weight: bolder;
   color: #fff;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .middle,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .middle {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .middle,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .middle {
   flex-grow: 1;
   margin: 1.6rem auto 5.6rem auto;
   text-align: center;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .title,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .title {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .title,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .title {
   margin-bottom: 0.48rem;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .english,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .english,
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .des,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .des {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .english,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .english,
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .des,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .des {
   font-size: 16px;
   font-weight: bold;
 }
-html .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .des,
-body .main .cover .wrapper .content .content1 .contentWrapper .tempWrapper .des {
+html .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .des,
+body .main .content .tempWrapper .content1 .contentWrapper .tempWrapper .des {
   margin-bottom: 0.53333333rem;
 }
-html .main .cover .wrapper .content .content2,
-body .main .cover .wrapper .content .content2 {
+html .main .content .tempWrapper .content2,
+body .main .content .tempWrapper .content2 {
   display: none;
   flex-grow: 1;
   width: 100%;
@@ -246,41 +270,42 @@ body .main .cover .wrapper .content .content2 {
   color: #fff;
   overflow: scroll;
   overflow-y: visible;
+  padding-right: 5.46666667rem;
 }
-html .main .cover .wrapper .content .content2 p,
-body .main .cover .wrapper .content .content2 p {
+html .main .content .tempWrapper .content2 p,
+body .main .content .tempWrapper .content2 p {
   word-wrap: break-word;
   font-size: 16px;
   line-height: 32px;
   text-indent: 2em;
 }
-html .main .cover .wrapper .content .content3,
-body .main .cover .wrapper .content .content3 {
+html .main .content .tempWrapper .content3,
+body .main .content .tempWrapper .content3 {
   display: none;
   flex-grow: 1;
   width: 100%;
   height: 100%;
 }
-html .main .cover .wrapper .content .content3 .table,
-body .main .cover .wrapper .content .content3 .table {
+html .main .content .tempWrapper .content3 .table,
+body .main .content .tempWrapper .content3 .table {
   height: 100%;
   width: 100%;
 }
-html .main .cover .wrapper .content .content3 .table p:nth-of-type(even),
-body .main .cover .wrapper .content .content3 .table p:nth-of-type(even) {
+html .main .content .tempWrapper .content3 .table p:nth-of-type(even),
+body .main .content .tempWrapper .content3 .table p:nth-of-type(even) {
   background: rgba(255, 255, 255, 0.5);
 }
-html .main .cover .wrapper .content .content3 .table p:nth-of-type(even).one,
-body .main .cover .wrapper .content .content3 .table p:nth-of-type(even).one {
+html .main .content .tempWrapper .content3 .table p:nth-of-type(even).one,
+body .main .content .tempWrapper .content3 .table p:nth-of-type(even).one {
   border-right: 2px solid rgba(0, 0, 0, 0.03);
 }
-html .main .cover .wrapper .content .content3 .table .line,
-body .main .cover .wrapper .content .content3 .table .line {
+html .main .content .tempWrapper .content3 .table .line,
+body .main .content .tempWrapper .content3 .table .line {
   width: 100%;
   display: flex;
 }
-html .main .cover .wrapper .content .content3 .table .line span,
-body .main .cover .wrapper .content .content3 .table .line span {
+html .main .content .tempWrapper .content3 .table .line span,
+body .main .content .tempWrapper .content3 .table .line span {
   width: 1.33333333rem;
   flex-grow: 1;
   font-size: 16px;
@@ -288,12 +313,12 @@ body .main .cover .wrapper .content .content3 .table .line span {
   padding-left: 0.66666667rem;
   color: #fff;
 }
-html .main .cover .wrapper .content .content3 .table .line span.one,
-body .main .cover .wrapper .content .content3 .table .line span.one {
+html .main .content .tempWrapper .content3 .table .line span.one,
+body .main .content .tempWrapper .content3 .table .line span.one {
   border-right: 2px solid rgba(255, 255, 255, 0.5);
 }
-html .main .cover .wrapper .content .content4,
-body .main .cover .wrapper .content .content4 {
+html .main .content .tempWrapper .content4,
+body .main .content .tempWrapper .content4 {
   /*background: #ffff00;*/
   display: none;
   flex-grow: 1;
