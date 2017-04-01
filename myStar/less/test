@@ -89,7 +89,7 @@ html,body {
           align-items: center;
           &:after {
             content: '';
-            background: transparent url('../img/index/search-back.png') no-repeat center;
+            background: transparent url('../img/index/search-back2.png') no-repeat center;
             width: 45/75rem;
             height: 90/75rem;
             background-size: 100% 100%;

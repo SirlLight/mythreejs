@@ -102,7 +102,7 @@ body .main .cover .header .close {
 html .main .cover .header .close:after,
 body .main .cover .header .close:after {
   content: '';
-  background: transparent url('../img/index/search-back.png') no-repeat center;
+  background: transparent url('../img/index/search-back2.png') no-repeat center;
   width: 0.6rem;
   height: 1.2rem;
   background-size: 100% 100%;

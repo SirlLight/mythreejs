@@ -101,7 +101,8 @@ function init() {
         new THREE.MeshLambertMaterial({
             emissive: 0xdd4422,
             map: THREE.ImageUtils.loadTexture('img/1/sun.jpg')
-        }));
+        })
+    );
     Sun.name = '太阳';
     Sun.volume = 12;
     Sun.castShadow = true;
@@ -291,17 +292,12 @@ function init() {
     initDeives();
     Devices.connect();
     controlBtn.addEventListener("touchend",this.controlDevice,false);
-    this.toggle();
+    toggle();
 
     window.addEventListener('resize', this.onWindowResize, false);
     canvas.addEventListener('mousedown', this.onDocumentMouseDown, false);
-    canvas.addEventListener('doubleclick', this.onCanvasDoubleclick , false);
 
     id=requestAnimationFrame(move);
-}
-
-function onCanvasDoubleclick() {
-    console.log(camera);
 }
 
 function toggle(){
@@ -328,12 +324,12 @@ function onDocumentMouseDown(event){
                 id = null;
             }
             window.flag=name;
-            document.querySelector(".header").style.display="block";
+            document.querySelector(".cover").style.display="block";
+            /*document.querySelector(".header").style.display="block";
             document.querySelector(".sidebar").style.display="flex";
             document.querySelector(".content").style.display="block";
-            document.getElementById("tempFlag").value=name;
+            document.getElementById("tempFlag").value=name;*/
             document.querySelector(".controlBtn").style.display="none";
-            console.log("after click");
             switch (name) {
                 case "水星":
                     tempIndex=0;
@@ -364,7 +360,16 @@ function onDocumentMouseDown(event){
             };
             tempStars=stars[tempIndex];
             stars.splice(tempIndex,1);
-            //r^3
+             /*if(name=="太阳"){
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+            }
+            else if(name=='月亮'){
+                camera.lookAt(Moon.position);
+            }
+            else{
+                camera.lookAt(stars[tempIndex].Mesh.position);
+            }*/
+            /*//r^3
             var rCube=(stars[tempIndex].volume * 3)/(4 * Math.PI );
             //r
             var r=Math.pow(rCube, 3);
@@ -381,21 +386,15 @@ function onDocumentMouseDown(event){
             var p;
             //p=stars[tempIndex].Mesh.position.z+n;
             p=stars[tempIndex].Mesh.position.z-10*r;
-            /*if(stars[tempIndex].Mesh.position.z>0){
-                p=stars[tempIndex].Mesh.position.z-n;
+            /!*if(stars[tempIndex].Mesh.position.z>0){
+                    p=stars[tempIndex].Mesh.position.z-n;
             }
             else{
                 p=stars[tempIndex].Mesh.position.z+n;
-            }*/
-            camera.position.set(o+n,r+n,p+n);
-            camera.lookAt(new THREE.Vector3(stars[tempIndex].Mesh.position.x,stars[tempIndex].Mesh.position.y,stars[tempIndex].Mesh.position.z));
-            console.log("camera.position:");
-            console.log(camera.position);
-            console.log("star.position:");
-            console.log(stars[tempIndex].Mesh.position);
+            }*!/
+            //camera.position.set(o+n,r+n,p+n);*/
             renderer.render(scene, camera);
             id=requestAnimationFrame(move);
-            intersects=undefined;
         }
     }
 }
@@ -516,7 +515,6 @@ function move() {
     for (var i = 0; i < stars.length; i++) {
         moveEachStar(stars[i]);
     }
-
     Moon.angle += Moon.speed;
     if (Moon.angle > Math.PI * Moon.distance) {
         Moon.angle -= Math.PI * Moon.distance;
@@ -529,7 +527,6 @@ function move() {
     Sun.planetName.lookAt(camera.position);
     /*月球自转*/
     Moon.rotation.y += .03;
-
     renderer.render(scene, camera);
 
     id=requestAnimationFrame(move);
@@ -564,17 +561,11 @@ function moveEachStar(star) {
         Moon.position.set((star.distance * Math.sin(star.angle))+( Moon._distance* Math.sin(Moon.angle)), 0, (star.distance * Math.cos(star.angle))+( Moon._distance* Math.cos(Moon.angle)));
         moonOrbit.position.set(star.distance * Math.sin(star.angle), 0, star.distance * Math.cos(star.angle));
     }
+    renderer.render(scene, camera);
 }
 
 function onWindowResize(){
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function setCameraPos(index) {
-    console.log("setCameraPos");
-    camera.position.set(stars[index].Mesh.position.x,stars[index].Mesh.position.y,stars[index].Mesh.position.z);
-    console.log(camera.position);
-    camera.lookAt(new THREE.Vector3(stars[index].Mesh.position.x,stars[index].Mesh.position.y,stars[index].Mesh.position.z))
 }
