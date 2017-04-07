@@ -291,21 +291,63 @@ function init() {
     /*gyroscope*/
     initDeives();
     Devices.connect();
-    controlBtn.addEventListener("touchend",this.controlDevice,false);
+    controlBtn.addEventListener("click",controlDevice,false);
     toggle();
 
-    window.addEventListener('resize', this.onWindowResize, false);
-    canvas.addEventListener('mousedown', this.onDocumentMouseDown, false);
+    window.addEventListener('resize', onWindowResize, false);
+    canvas.addEventListener('mousedown', onDocumentMouseDown, false);
 
     id=requestAnimationFrame(move);
 }
 
 function toggle(){
     isDeviceing === 0 ? controls.update() : Devices.update();
-    /*requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
      return toggle();
-     });*/
+     });
 }
+
+$(".searchBar>li").click(function(){
+    var val=$(this).val();
+    console.log(val);
+    if(val){
+        switch (val) {
+            case 1:
+                window.flag="太阳";
+                break;
+            case 2:
+                window.flag="水星";
+                break;
+            case 3:
+                window.flag="金星";
+                break;
+            case 4:
+                window.flag="地球";
+                break;
+            case 5:
+                window.flag="火星";
+                break;
+            case 6:
+                window.flag="木星";
+                break;
+            case 7:
+                window.flag="土星";
+                break;
+            case 8:
+                window.flag="天王星";
+                break;
+            case 9:
+                window.flag="海王星";
+                break;
+            default:
+                break;
+        };
+        document.querySelector(".cover").style.display="block";
+        document.querySelector(".searchResult").style.display="none";
+        console.log(window.flag);
+    }
+
+});
 
 function onDocumentMouseDown(event){
     /* event.preventDefault();*/
@@ -358,8 +400,11 @@ function onDocumentMouseDown(event){
                 default:
                     break;
             };
-            tempStars=stars[tempIndex];
-            stars.splice(tempIndex,1);
+            if(tempIndex){
+                tempStars=stars[tempIndex];
+                stars.splice(tempIndex,1);
+                renderer.render(scene, camera);
+            }
              /*if(name=="太阳"){
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
             }
@@ -393,7 +438,6 @@ function onDocumentMouseDown(event){
                 p=stars[tempIndex].Mesh.position.z+n;
             }*!/
             //camera.position.set(o+n,r+n,p+n);*/
-            renderer.render(scene, camera);
             id=requestAnimationFrame(move);
         }
     }
@@ -408,6 +452,7 @@ function initDeives(){
 }
 
 function controlDevice(event){
+    console.log("controlclick");
     if(isDeviceing===0){
         isDeviceing=1;
     }
@@ -557,7 +602,7 @@ function moveEachStar(star) {
         star.planetName.lookAt(camera.position);
     }
     /*moon and moonOrbit*/
-    if(star.name=="Earth"){
+    if(star.name=="地球"){
         Moon.position.set((star.distance * Math.sin(star.angle))+( Moon._distance* Math.sin(Moon.angle)), 0, (star.distance * Math.cos(star.angle))+( Moon._distance* Math.cos(Moon.angle)));
         moonOrbit.position.set(star.distance * Math.sin(star.angle), 0, star.distance * Math.cos(star.angle));
     }

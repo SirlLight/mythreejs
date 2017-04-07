@@ -46,14 +46,45 @@ body .main .universe {
   overflow: hidden;
   position: relative;
 }
+html .main .universe .searchResult,
+body .main .universe .searchResult {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+html .main .universe .searchResult .searchBar,
+body .main .universe .searchResult .searchBar {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+html .main .universe .searchResult .searchBar li,
+body .main .universe .searchResult .searchBar li {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html .main .universe .searchResult .searchBar li img,
+body .main .universe .searchResult .searchBar li img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+html .main .universe .searchResult .searchBar li span,
+body .main .universe .searchResult .searchBar li span {
+  color: #ffffff;
+}
 html .main .universe .controlBtn,
 body .main .universe .controlBtn {
   width: 30px;
   height: 30px;
   position: absolute;
   top: 3%;
-  left: 3%;
-  background: url(../img/controlIconae.png);
+  right: 3%;
+  background: url(../img/control2.png);
   background-size: 100% 100%;
 }
 html .main .hide,
@@ -190,57 +221,67 @@ body .main .cover .coverWrapper .wrapper .content .content1 {
   flex-grow: 1;
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  overflow-y: visible;
 }
 html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper,
 body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper {
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  color: #ffffff;
 }
 html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper,
 body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 32px;
+  width: 100%;
+  flex-direction: row-reverse;
+  padding: 0.66666667rem;
+  /*p{
+                    font-size: 18px;
+                    font-weight: bolder;
+                    color: #fff;
+                  }
+                  .middle{
+                    flex-grow: 1;
+                    margin: 120/75rem auto 420/75rem auto;
+                    text-align: center;
+                  }
+                  .title{
+                    margin-bottom: 36/75rem;
+                  }
+                  .english,.des{
+                    font-size: 16px;
+                    font-weight: bold;
+                  }
+                  .des{
+                    margin-bottom: 40/75rem;
+                  }*/
 }
 html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg,
 body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg {
   width: 4.26666667rem;
   height: 4.26666667rem;
-  flex-shrink: 0;
-  flex-grow: 1;
-  background: url("../img/0.png") no-repeat;
-  background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper p,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper p {
+html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img,
+body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img {
+  width: 100%;
+  height: 100%;
+}
+html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText,
+body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText {
+  padding: 0.66666667rem;
+  font-size: 16px;
+}
+html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p,
+body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p {
+  line-height: 20px;
+  margin-bottom: 0.66666667rem;
+}
+html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title,
+body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title {
   font-size: 18px;
   font-weight: bolder;
-  color: #fff;
-}
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .middle,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .middle {
-  flex-grow: 1;
-  margin: 1.6rem auto 5.6rem auto;
-  text-align: center;
-}
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .title,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .title {
-  margin-bottom: 0.48rem;
-}
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .english,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .english,
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .des,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .des {
-  font-size: 16px;
-  font-weight: bold;
-}
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .des,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .des {
-  margin-bottom: 0.53333333rem;
 }
 html .main .cover .coverWrapper .wrapper .content .content2,
 body .main .cover .coverWrapper .wrapper .content .content2 {
@@ -300,7 +341,7 @@ body .main .cover .coverWrapper .wrapper .content .content3 .table .line span.on
 }
 html .main .cover .coverWrapper .wrapper .content .content4,
 body .main .cover .coverWrapper .wrapper .content .content4 {
-  /*background: #ffff00;*/
+  background: #ffff00;
   display: none;
   flex-grow: 1;
   width: 100%;
@@ -315,8 +356,8 @@ body .main .cover .coverWrapper .wrapper .content .content4 {
   overflow-y: visible;
   box-sizing: border-box;
 }
-html .main .cover .coverWrapper .wrapper .content .content4 canvas,
-body .main .cover .coverWrapper .wrapper .content .content4 canvas {
-  width: 100%;
-  height: 100%;
+html .main .cover .coverWrapper .wrapper .content .content4 #starConstruct,
+body .main .cover .coverWrapper .wrapper .content .content4 #starConstruct {
+  width: 300px;
+  height: 300px;
 }

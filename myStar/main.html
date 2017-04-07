@@ -36,6 +36,46 @@
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
     <div class="universe">
         <div id="controlBtn" class="controlBtn"></div>
+        <div class="searchResult">
+            <ul class="searchBar">
+                <li value="1">
+                    <img src="img/star/0.png" alt="">
+                    <span>太阳</span>
+                </li>
+                <li value="2">
+                    <img src="img/star/1.png" alt="">
+                    <span>水星</span>
+                </li>
+                <li value="3">
+                    <img src="img/star/2.png" alt="">
+                    <span>金星</span>
+                </li>
+                <li value="4">
+                    <img src="img/star/3.png" alt="">
+                    <span>地球</span>
+                </li>
+                <li value="5">
+                    <img src="img/star/4.png" alt="">
+                    <span>火星</span>
+                </li>
+                <li value="6">
+                    <img src="img/star/5.png" alt="">
+                    <span>木星</span>
+                </li>
+                <li value="7">
+                    <img src="img/star/6.png" alt="">
+                    <span>土星</span>
+                </li>
+                <li value="8">
+                    <img src="img/star/7.png" alt="">
+                    <span>天王星</span>
+                </li>
+                <li value="9">
+                    <img src="img/star/8.png" alt="">
+                    <span>海王星</span>
+                </li>
+            </ul>
+        </div>
         <canvas id="main" bn-document-click="handleClick( $event )"></canvas>
     </div>
     <div class="cover">
@@ -59,12 +99,18 @@
                     <div class="content1" style="display: block">
                         <div class="contentWrapper">
                             <div class="tempWrapper">
-                                <div class="starImg"></div>
-                                <div class="middle">
-                                    <p class="title">{{starInfo.content1.name}}</p>
-                                    <p class="english">{{starInfo.content1.english}}</p>
+                                <div class="starImg">
+                                    <img src={{starInfo.content1.img}} alt="">
                                 </div>
-                                <p class="des">{{starInfo.content1.des}}</p>
+                            </div>
+                            <div class="desText">
+                                <p class="title">{{starInfo.content1.name}}</p>
+                                <p>英文名：{{starInfo.content1.english}}</p>
+                                <p>特点：{{starInfo.content1.feature}}</p>
+                                <p>外观：{{starInfo.content1.appearance}}</p>
+                                <p>卫星小伙伴：{{starInfo.content1.partner}}</p>
+                                <p>探索：{{starInfo.content1.explore}}</p>
+                                <p>一句话描述：{{starInfo.content1.des}}</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +126,7 @@
                         </div>
                     </div>
                     <div class="content4">
-                        <!--<canvas id="star1"></canvas>-->
+                        <!--<canvas id="starConstruct"></canvas>-->
                     </div>
                 </div>
             </div>
@@ -114,8 +160,89 @@
         $('.content1').attr('style','display: block;');
         $('.content1').siblings('div').removeAttr("style");
         document.querySelector(".controlBtn").style.display="block";
-        stars.splice(tempIndex,0,tempStars);
+        document.querySelector(".searchResult").style.display="block";
+        if(tempIndex){
+            stars.splice(tempIndex,0,tempStars);
+            tempIndex=undefined;
+        }
     });
+
+    /*var canvas2=document.getElementById('starConstruct');
+    var content4=document.querySelector(".content4");
+    /!*canvas2.style.width=content4.clientWidth;
+    canvas2.style.height=content4.clientHeight;*!/
+    var width2=canvas2.clientWidth;
+    var height2=canvas2.clientHeight;
+
+    var camera2, scene2, renderer2;
+    var group2;
+
+    init2();
+    animate2();
+
+    function init2() {
+        camera2 = new THREE.PerspectiveCamera( 40, width2 / height2, 1, 800 );
+        camera2.position.set( -20, 10, 50 );
+        camera2.lookAt( new THREE.Vector3( 0, 0, 0) );
+        scene2 = new THREE.Scene();
+        // Lights
+        var light2 = new THREE.AmbientLight( 0x999999 );
+        scene2.add( light2 );
+        var clipPlanes2 = [
+            new THREE.Plane( new THREE.Vector3( 1,  0,  0 ), 0 ),
+            new THREE.Plane( new THREE.Vector3( 0, -1,  0 ), 0 ),
+            new THREE.Plane( new THREE.Vector3( 0,  0, -1 ), 0 )
+        ];
+        group2 = new THREE.Object3D();
+        for ( var i = 1; i < 3; i ++ ) {
+            var geometry2 = new THREE.SphereBufferGeometry( i / 2, 48, 48 );
+            var material2 = new THREE.MeshStandardMaterial( {
+                color: new THREE.Color( Math.sin( i * 0.5 ) * 0.5 + 0.5, Math.cos( i * 1.5 ) * 0.5 + 0.5, Math.sin( i * 4.5 + 0 ) * 0.5 + 0.5 ),
+                roughness: 0.95,
+                metalness: 0.0,
+                side: THREE.DoubleSide,
+                clippingPlanes: clipPlanes2,
+                clipIntersection: true
+            } );
+            group2.add( new THREE.Mesh( geometry2, material2 ) );
+        }
+        scene2.add( group2 );
+        // Renderer
+        renderer2 = new THREE.WebGLRenderer({canvas: canvas2});
+        renderer2.antialias = true;
+        renderer2.setPixelRatio( window.devicePixelRatio );
+        renderer2.setSize( width2, height2 );
+        renderer2.setClearColor( 0x222222 );
+        renderer2.localClippingEnabled = true;
+        window.addEventListener( 'resize', onWindowResize2, false );
+        // GUI
+        mode = {};
+        mode.clipIntersection = true;
+        mode.clipPosition = 0;
+        // Controls
+        var controls2 = new THREE.OrbitControls( camera2, renderer2.domElement );
+        controls2.target.set( 0, 1, 0 );
+        controls2.update();
+    }
+
+    function onWindowResize2() {
+        camera2.aspect = width2 / height2;
+        camera2.updateProjectionMatrix();
+        renderer2.setSize( width2, height2 );
+    }
+
+    function animate2() {
+        requestAnimationFrame( animate2 );
+        var children = group2.children;
+        for ( var i = 0; i < children.length; i ++ ) {
+            var current = children[ i ].material;
+            for ( var j = 0; j < current.clippingPlanes.length; j ++ ) {
+                var plane = current.clippingPlanes[ j ];
+                plane.constant = ( 49 * plane.constant + mode.clipPosition ) / 50;
+            }
+        }
+        renderer2.render( scene2, camera2 );
+    }*/
 </script>
 
 <!--<script>
