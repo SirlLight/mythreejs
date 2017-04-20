@@ -1,4 +1,5 @@
 window.flag;
+window.index;
 var scene = undefined,
     renderer = undefined;
 
@@ -346,7 +347,37 @@ $(".searchBar>li").click(function(){
         document.querySelector(".searchResult").style.display="none";
         console.log(window.flag);
     }
-
+    switch (window.flag) {
+        case "太阳":
+            window.index=0;
+            break;
+        case "水星":
+            window.index=1;
+            break;
+        case "金星":
+            window.index=2;
+            break;
+        case "地球":
+            window.index=3;
+            break;
+        case "火星":
+            window.index=4;
+            break;
+        case "木星":
+            window.index=5;
+            break;
+        case "土星":
+            window.index=6;
+            break;
+        case "天王星":
+            window.index=7;
+            break;
+        case "海王星":
+            window.index=8;
+            break;
+        default:
+            break;
+    };
 });
 
 function onDocumentMouseDown(event){
@@ -400,11 +431,43 @@ function onDocumentMouseDown(event){
                 default:
                     break;
             };
+            switch (window.flag) {
+                case "太阳":
+                    window.index=0;
+                    break;
+                case "水星":
+                    window.index=1;
+                    break;
+                case "金星":
+                    window.index=2;
+                    break;
+                case "地球":
+                    window.index=3;
+                    break;
+                case "火星":
+                    window.index=4;
+                    break;
+                case "木星":
+                    window.index=5;
+                    break;
+                case "土星":
+                    window.index=6;
+                    break;
+                case "天王星":
+                    window.index=7;
+                    break;
+                case "海王星":
+                    window.index=8;
+                    break;
+                default:
+                    break;
+            };
             if(tempIndex){
                 tempStars=stars[tempIndex];
                 stars.splice(tempIndex,1);
                 renderer.render(scene, camera);
             }
+            console.log(name,tempIndex);
              /*if(name=="太阳"){
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
             }
