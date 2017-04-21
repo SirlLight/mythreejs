@@ -37,17 +37,36 @@ html,body {
     overflow: hidden;
     position: relative;
     /*background: #ea445a;*/
+    .coverPage{
+      position: absolute;
+      top: 0;
+      left:0;
+      width: 100%;
+      height:100%;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
     .universe {
       width: 100%;
       height: 100%;
       overflow: hidden;
       position: relative;
+      visibility: hidden;
+      .controlBtn {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 3%;
+        right: 3%;
+        background: url(../img/control2.png);
+        background-size: 100% 100%;
+      }
       .searchResult{
         position: absolute;
         width: 100px;
         height:100%;
-        overflow: scroll;
-        overflow-y: hidden;
         .searchBar{
           width: 100px;
           height: 100%;
@@ -67,15 +86,6 @@ html,body {
             }
           }
         }
-      }
-      .controlBtn {
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        top: 3%;
-        right: 3%;
-        background: url(../img/control2.png);
-        background-size: 100% 100%;
       }
     }
     .hide{
@@ -181,14 +191,18 @@ html,body {
           .content{
             width: 100%;
             overflow: scroll;
-            overflow-y: visible;
+            &::-webkit-scrollbar{
+              display:none;
+            }
             .content1{
               display: none;
               flex-grow: 1;
               width: 100%;
               height: 100%;
               overflow: scroll;
-              overflow-y: visible;
+              &::-webkit-scrollbar{
+                display:none;
+              }
               .contentWrapper{
                 height: 100%;
                 display: flex;
@@ -207,26 +221,6 @@ html,body {
                       height: 100%;
                     }
                   }
-                  /*p{
-                    font-size: 18px;
-                    font-weight: bolder;
-                    color: #fff;
-                  }
-                  .middle{
-                    flex-grow: 1;
-                    margin: 120/75rem auto 420/75rem auto;
-                    text-align: center;
-                  }
-                  .title{
-                    margin-bottom: 36/75rem;
-                  }
-                  .english,.des{
-                    font-size: 16px;
-                    font-weight: bold;
-                  }
-                  .des{
-                    margin-bottom: 40/75rem;
-                  }*/
                 }
                 .desText{
                   padding: 50/75rem;
@@ -250,7 +244,9 @@ html,body {
               padding: 50/75rem;
               color: #fff;
               overflow: scroll;
-              overflow-y: visible;
+              &::-webkit-scrollbar{
+                display:none;
+              }
               p{
                 word-wrap:break-word;
                 font-size: 16px;
@@ -302,8 +298,10 @@ html,body {
               color: #fff;
               text-indent:2em;
               overflow: scroll;
-              overflow-y: visible;
               box-sizing: border-box;
+              &::-webkit-scrollbar{
+                display:none;
+              }
               .starPic{
                 width:100%;
                 height:100%;

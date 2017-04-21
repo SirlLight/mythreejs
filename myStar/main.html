@@ -35,6 +35,9 @@
 </div>-->
 
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
+    <div class="coverPage">
+        <img src="img/cover.jpeg" alt="">
+    </div>
     <div class="universe">
         <div id="controlBtn" class="controlBtn"></div>
         <div class="searchResult">
@@ -667,7 +670,74 @@
             tempIndex=undefined;
         }
     });
+    function detectOrient() {
+        var storage = localStorage;
+        var data = storage.getItem('J-recordOrientX');
+        var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
 
+        var _Width = 0, _Height = 0;
+        if(!data) {
+            _Width = window.screen.width;
+            _Height = window.screen.height;
+            storage.setItem('J-recordOrientX',_Width + ',' + _Height);
+        }else {
+            var str = data.split(',');
+            _Width = str[0];
+            _Height = str[1];
+        }
+
+        if(w == _Width) {
+            // 竖屏
+
+            return;
+        }
+        if(w == _Height){
+// 横屏
+            return;
+        }
+    }
+    detectOrient();
+    window.addEventListener('resize',detectOrient);
+    /*(function () {
+        setTimeout(function () {
+            $('.coverPage').fadeOut('slow');
+            $('.universe').css('visibility','visible');
+        },3000)
+    })()*/
+    /*function orient() {
+        if (window.orientation == 90 || window.orientation == -90) {
+            //ipad、iphone竖屏；Andriod横屏
+            /!*$("body").attr("class", "landscape");
+            orientation = 'landscape';*!/
+            alert("竖屏");
+            return false;
+        }
+        else if (window.orientation == 0 || window.orientation == 180) {
+            //ipad、iphone横屏；Andriod竖屏
+            /!*$("body").attr("class", "portrait");
+            orientation = 'portrait';*!/
+            alert("横屏");
+            return false;
+        }
+    }
+    //判断手机横竖屏状态：
+   /!* function hengshuping(){
+        if(window.orientation==180||window.orientation==0){
+            alert("竖屏状态！")
+        }
+        if(window.orientation==90||window.orientation==-90){
+            alert("横屏状态！")
+        }
+    }
+    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);*!/
+    //页面加载时调用
+    $(function(){
+        orient();
+    });
+    //用户变化屏幕方向时调用
+    $(window).bind( 'orientationchange', function(e){
+        orient();
+    });*/
     /*var canvas2=document.getElementById('starConstruct');
     var content4=document.querySelector(".content4");
     /!*canvas2.style.width=content4.clientWidth;
