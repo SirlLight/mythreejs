@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <script src="js/three.js"></script>
     <script src="js/OrbitControls.js"></script>
@@ -34,9 +35,17 @@
     </ul>
 </div>-->
 
+<div class="judge">
+    <div class="judgeWrapper">
+        <div class="phoneWrapper"></div>
+        <p>请打开屏幕旋转功能，切换横屏，体验更佳哦~</p>
+    </div>
+</div>
+
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
-    <div class="coverPage">
-        <img src="img/cover.jpeg" alt="">
+    <div class="coverPage" style="background: url('img/cover.jpeg');background-size:100% 100% ">
+        <!--<img src="img/cover.jpeg" alt="">-->
+        <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
     </div>
     <div class="universe">
         <div id="controlBtn" class="controlBtn"></div>
@@ -670,74 +679,56 @@
             tempIndex=undefined;
         }
     });
-    function detectOrient() {
-        var storage = localStorage;
-        var data = storage.getItem('J-recordOrientX');
-        var w = document.documentElement.clientWidth, h = document.documentElement.clientHeight;
-
-        var _Width = 0, _Height = 0;
-        if(!data) {
-            _Width = window.screen.width;
-            _Height = window.screen.height;
-            storage.setItem('J-recordOrientX',_Width + ',' + _Height);
-        }else {
-            var str = data.split(',');
-            _Width = str[0];
-            _Height = str[1];
-        }
-
-        if(w == _Width) {
-            // 竖屏
-
-            return;
-        }
-        if(w == _Height){
-// 横屏
-            return;
-        }
-    }
-    detectOrient();
-    window.addEventListener('resize',detectOrient);
-    /*(function () {
-        setTimeout(function () {
-            $('.coverPage').fadeOut('slow');
-            $('.universe').css('visibility','visible');
-        },3000)
-    })()*/
-    /*function orient() {
-        if (window.orientation == 90 || window.orientation == -90) {
-            //ipad、iphone竖屏；Andriod横屏
-            /!*$("body").attr("class", "landscape");
-            orientation = 'landscape';*!/
-            alert("竖屏");
-            return false;
-        }
-        else if (window.orientation == 0 || window.orientation == 180) {
-            //ipad、iphone横屏；Andriod竖屏
-            /!*$("body").attr("class", "portrait");
-            orientation = 'portrait';*!/
-            alert("横屏");
-            return false;
-        }
-    }
-    //判断手机横竖屏状态：
-   /!* function hengshuping(){
-        if(window.orientation==180||window.orientation==0){
-            alert("竖屏状态！")
-        }
-        if(window.orientation==90||window.orientation==-90){
-            alert("横屏状态！")
-        }
-    }
-    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);*!/
-    //页面加载时调用
-    $(function(){
+    (function () {
         orient();
-    });
-    //用户变化屏幕方向时调用
+    })()
+    function orient() {
+        if ((window.orientation == 90 || window.orientation == -90)||(window.innerWidth>window.innerHeight)) {
+            //横屏
+            $('.judge').css('visibility','hidden');
+            $('.main').css('visibility','visible');
+            setTimeout(function () {
+                $('.coverPage').fadeOut('slow');
+                $('.universe').css('visibility','visible');
+            },3000)
+            return false;
+        }
+        else if ((window.orientation == 0 || window.orientation == 180)||(window.innerWidth<window.innerHeight)) {
+            //竖屏
+            $('.judge').css('visibility','visible');
+            return false;
+        }
+    }
+    /*function orient() {
+        if (window.innerWidth>window.innerHeight) {
+            //横屏
+            /!*$('.judge').css('visibility','hidden');
+             $('.main').css('visibility','visible');
+             *!/
+            alert('heng');
+            $('body').css('transform','rotate(0deg)');
+            return false;
+        }
+        else if (window.innerWidth<window.innerHeight) {
+            //竖屏
+            //$('.judge').css('visibility','visible');
+            var docWidth=$('html')[0].offsetWidth;
+            var docHeight=$('html')[0].offsetHeight;
+            $('body').css('width',docWidth+'px');
+            $('body').css('height',docHeight+'px');
+            $('.main').css('width',docHeight+'px');
+            $('.main').css('height',docWidth+'px');
+            $('.universe').css('width',docHeight+'px');
+            $('.universe').css('height',docWidth+'px');
+            $('.universe>canvas').css('width',docHeight+'px');
+            $('.universe>canvas').css('height',docWidth+'px');
+            $('body').css('transform','rotate(90deg)');
+            return false;
+        }
+    }*/
     $(window).bind( 'orientationchange', function(e){
         orient();
-    });*/
+    });
     /*var canvas2=document.getElementById('starConstruct');
     var content4=document.querySelector(".content4");
     /!*canvas2.style.width=content4.clientWidth;

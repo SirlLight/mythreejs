@@ -4,13 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+.hide {
+  display: none;
+}
 html,
 body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
   height: 100%;
   /*div {
       height: 100%;
@@ -31,12 +30,51 @@ body {
       }
   }*/
 }
+html .judge,
+body .judge {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000000;
+  visibility: hidden;
+}
+html .judge .judgeWrapper,
+body .judge .judgeWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+}
+html .judge .judgeWrapper .phoneWrapper,
+body .judge .judgeWrapper .phoneWrapper {
+  width: 6.66666667rem;
+  height: 6.66666667rem;
+  margin-bottom: 0.13333333rem;
+  background: url("../img/phone.png");
+  background-size: 100% 100%;
+  -webkit-animation: run 3s linear 0s infinite alternate;
+}
+@-webkit-keyframes run {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(90deg);
+  }
+}
 html .main,
 body .main {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
+  visibility: hidden;
   /*background: #ea445a;*/
 }
 html .main .coverPage,
@@ -98,10 +136,6 @@ body .main .universe .searchResult .searchBar li img {
 html .main .universe .searchResult .searchBar li span,
 body .main .universe .searchResult .searchBar li span {
   color: #ffffff;
-}
-html .main .hide,
-body .main .hide {
-  display: none;
 }
 html .main .cover,
 body .main .cover {

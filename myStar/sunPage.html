@@ -1,511 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>myStar</title>
-	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<script src="js/three.js"></script>
-	<script src="js/OrbitControls.js"></script>
-	<script src="js/DeviceOrientationControls.js"></script>
-	<script src="js/FirstPersonControls.js"></script>
-	<script src="js/FZLanTingHeiS-UL-GB_Regular.js"></script>
-
-	<script src="js/jquery-3.1.1.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/data.js"></script>
-
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/index.css">
-
-	<!--<style>
-		@charset"utf-8";
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		html,body {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			height:100%;
-		.main {
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			position: relative;
-		/*background: #ea445a;*/
-		.universe {
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			position: relative;
-		.controlBtn {
-			width: 30px;
-			height: 30px;
-			position: absolute;
-			top: 3%;
-			left: 3%;
-			background: url(../img/controlIconae.png);
-			background-size: 100% 100%;
-		}
-		}
-		.hide{
-			display: none;
-		}
-		.header {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 100%;
-			height: 180/75rem;
-			font-size: 16px;
-			line-height: 180/75rem;
-			color: #fff;
-			font-weight: bold;
-			text-align: center;
-			border-bottom: 1px solid #e1e1e1;
-			background: rgba(0, 0, 0, 0.7);
-			display: none;
-		.headerWrapper{
-			position: relative;
-			width: 100%;
-		.title {
-			width: 100%;
-			text-align: center;
-		}
-		.close {
-			display: flex;
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 180/75rem;
-			height: 180/75rem;
-			justify-content: center;
-			align-items: center;
-		&:after {
-			 content: '';
-			 background: transparent url('../img/index/search-back.png') no-repeat center;
-			 width: 45/75rem;
-			 height: 90/75rem;
-			 background-size: 100% 100%;
-		 }
-		}
-		}
-		}
-		.sidebar{
-			position: absolute;
-			top: 180/75rem;;
-			left: 0;
-			bottom: 0;
-			flex-grow: 1;
-			width: 360/75rem;
-			background: rgba(0, 0, 0, 0.7);
-			/*display: flex;*/
-			display: none;;
-			flex-direction: column;
-			border-right: 1px solid #e1e1e1;
-		li{
-			flex-grow: 1;
-			display:flex;
-			justify-content: center;
-			align-items: center;
-		i{
-			width: 180/75rem;
-			height: 180/75rem;
-		}
-		.first{
-			background: transparent url('../img/index/list_star.png') no-repeat center;
-			background-size: 100%;
-		&.active{
-			 background: transparent url('../img/index/star.png') no-repeat center;
-			 background-size: 100%;
-		 }
-		}
-		.second{
-			background: transparent url("../img/index/list_info.png") no-repeat center;
-			background-size: 100%;
-		&.active{
-			 background: transparent url('../img/index/info.png') no-repeat center;
-			 background-size: 100%;
-		 }
-		}
-		.third{
-			background: transparent url("../img/index/list_feature.png") no-repeat center;
-			background-size: 100%;
-		&.active{
-			 background: transparent url('../img/index/feature.png') no-repeat center;
-			 background-size: 100%;
-		 }
-		}
-		.forth{
-			background: transparent url("../img/index/list_inner.png") no-repeat center;
-			background-size: 100%;
-		&.active{
-			 background: transparent url('../img/index/inner.png') no-repeat center;
-			 background-size: 100%;
-		 }
-		}
-		}
-		}
-		.content{
-			position: absolute;
-			top: 180/75rem;
-			left:360/75rem;
-			right: 0;
-			bottom: 0;
-			width: 100%;
-			overflow: scroll;
-			overflow-y: visible;
-			overflow-x: visible;
-			background: rgba(0, 0, 0, 0.7);
-			display: none;
-		.tempWrapper{
-			position: relative;
-			height: 100%;
-			/*background: #6600CC;*/
-			display: flex;
-		.pull{
-			/*background: #FF0033;*/
-			height: 100%;
-			border-right: solid #fff 1px;
-			border-left: solid #fff 1px;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		.pullLogo{
-			width: 180/75rem;
-			height: 180/75rem;
-			background: transparent url('../img/index/search-back.png') no-repeat center;
-			background-size: 45/75rem 90/75rem;
-		}
-		}
-		.content1{
-			display: none;
-			flex-grow: 1;
-			/*width: 100%;*/
-			height: 100%;
-		.contentWrapper{
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		.tempWrapper{
-			display: flex;
-			flex-direction: column;
-			align-items:center;
-			justify-content: center;
-			line-height: 32px;
-		.starImg{
-			width: 320/75rem;
-			height: 320/75rem;
-			flex-shrink: 0;
-			flex-grow: 1;
-			background: url("../img/0.png") no-repeat;
-			background-size: 100%;
-		}
-		p{
-			font-size: 18px;
-			font-weight: bolder;
-			color: #fff;
-		}
-		.middle{
-			flex-grow: 1;
-			margin: 120/75rem auto 420/75rem auto;
-			text-align: center;
-		}
-		.title{
-			margin-bottom: 36/75rem;
-		}
-		.english,.des{
-			font-size: 16px;
-			font-weight: bold;
-		}
-		.des{
-			margin-bottom: 40/75rem;
-		}
-		}
-		}
-		}
-		.content2{
-			display: none;
-			flex-grow: 1;
-			width: 100%;
-			height:100%;
-			padding: 50/75rem;
-			color: #fff;
-			overflow: scroll;
-			overflow-y: visible;
-			padding-right: 410/75rem;
-		p{
-			word-wrap:break-word;
-			font-size: 16px;
-			line-height: 32px;
-			text-indent:2em;
-		}
-		}
-		.content3{
-			display: none;
-			flex-grow: 1;
-			width: 100%;
-			height: 100%;
-			overflow: scroll;
-			overflow-y: visible;
-		.table{
-			height: 100%;
-			width: 100%;
-		p:nth-of-type(even){
-			background: rgba(255,255,255,0.5);
-		&.one{
-			 border-right: 2px solid rgba(0, 0, 0, 0.03);;
-		 }
-		}
-		.line{
-			width: 100%;
-			display: flex;
-		span{
-			width: 100/75rem;
-			flex-grow: 1;
-			font-size: 16px;
-			line-height: 32px;
-			padding-left: 50/75rem;
-			color: #fff;
-		&.one{
-			 border-right: 2px solid rgba(255,255,255,0.5);
-		 }
-		}
-		}
-		}
-		}
-		.content4{
-			/*background: #ffff00;*/
-			display: none;
-			flex-grow: 1;
-			width: 100%;
-			height:100%;
-			padding: 50/75rem;
-			word-wrap:break-word;
-			font-size: 16px;
-			line-height: 32px;
-			color: #fff;
-			text-indent:2em;
-			overflow: scroll;
-			overflow-y: visible;
-			box-sizing: border-box;
-		}
-		}
-		}
-		/*.cover {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.7);
-          display: none;
-          flex-direction: column;
-        }*/
-		}
-		}
-
-
-
-
-	</style>-->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
-<body onload="init()">
-<!--<div>
-    <ul id="ul">
-        <li><img src="img/index/2.jpg" alt=""></li>
-        <li><img src="img/index/2.jpg" alt=""></li>
-        <li>
-            <div id="controlBtn" class="controlBtn"></div>
-            <canvas id="main"></canvas>
-        </li>
-    </ul>
-</div>-->
-
-<div class="main" ng-app="myApp" ng-controller="myCtrl">
-	<div class="universe">
-		<div id="controlBtn" class="controlBtn"></div>
-		<canvas id="main" bn-document-click="handleClick( $event )"></canvas>
-	</div>
-	<input id="tempFlag" type="hidden" ng-model="flag">
-	<div class="header">
-		<div class="headerWrapper">
-			<i class="close"></i>
-			<p class="title">
-				{{starInfo.title}}
-				<span class="title2" style="display: none;;">- 基本资料</span>
-				<span class="title3" style="display: none;">- 事实与特征</span>
-			</p>
-		</div>
-	</div>
-	<ul class="sidebar">
-		<li value="1"><i class="first active"></i></li>
-		<li value="2"><i class="second"></i></li>
-		<li value="3"><i class="third"></i></li>
-		<li value="4"><i class="forth"></i></li>
-	</ul>
-	<div class="content">
-		<div class="tempWrapper">
-			<div class="pull">
-				<i class="pullLogo"></i>
-			</div>
-			<div class="content1" style="display: block">
-				<div class="contentWrapper">
-					<div class="tempWrapper">
-						<div class="starImg"></div>
-						<div class="middle">
-							<p class="title">{{starInfo.content1.name}}</p>
-							<p class="english">{{starInfo.content1.english}}</p>
-						</div>
-						<p class="des">{{starInfo.content1.des}}</p>
-					</div>
-				</div>
-			</div>
-			<div class="content2">
-				<p ng-repeat="content in starInfo.content2">{{content}}</p>
-			</div>
-			<div class="content3">
-				<div class="table">
-					<p class="line" ng-repeat="(key,item) in starInfo.content3">
-						<span class="one">{{key}}</span>
-						<span>{{item}}</span>
-					</p>
-				</div>
-			</div>
-			<div class="content4">inner</div>
-		</div>
-	</div>
-</div>
-
+<body>
+<canvas id="bg" style="width: 100%;height: 100%;"></canvas>
 <script>
-	$(".sidebar>li").click(function(){
-		$(this).children("i").addClass("active");
-		$(this).siblings("li").children("i").removeClass("active");
-		$(".content"+$(this).val()).attr('style','display: block;').siblings("div").removeAttr("style");
-		var dis3=$('.sidebar').width();
-		$(".content").animate({left:dis3});
-		if($(this).val()==2){
-			$(".title2").siblings("span").attr('style','display: none;');
-			$(".title2").attr('style','display: inline;');
-		}
-		else if($(this).val()==3){
-			$(".title3").siblings("span").attr('style','display: none;');
-			$(".title3").attr('style','display: inline;');
-		}
-		else{
-			$(".title2").attr('style','display: none;');
-			$(".title3").attr('style','display: none;');
-		}
-	});
-	$('.close').click(function (e) {
-		e.preventDefault();
-		var dis3=$('.sidebar').width();
-		$(".content").animate({left:dis3});
-		document.querySelector(".header").style.display="none";
-		document.querySelector(".sidebar").style.display="none";
-		document.querySelector(".content").style.display="none";
-		$(".sidebar>li:eq(0)").children("i").addClass('active');
-		$(".sidebar>li:eq(0)").siblings().children("i").removeClass("active");
-		$('.content1').attr('style','display: block;');
-		$('.content1').siblings('div').removeAttr("style");
-		document.querySelector(".controlBtn").style.display="block";
-		stars.splice(tempIndex,0,tempStars);
-		camera.position.set(-200, 50, 0);
-		camera.lookAt(new THREE.Vector3(0, 0, 0));
-	});
-	$('.pullLogo').click(function () {
-		var dis1=$('.content').width();
-		var dis2=$('.pullLogo').width();
-		var dis3=$('.sidebar').width();
-		var oldDis=(dis1-dis2);
-		var newDis1=oldDis.toFixed(3);
-		var newDis2=oldDis.toFixed(3)+'px';
-		var m=$(".content").css("left");
-		if(newDis2 == m){
-			$(".content").animate({left:dis3});
-		}
-		else{
-			$(".content").animate({left:newDis1});
-		}
-	});
+	var bg = document.getElementById('bg');
+	var ctx = bg.getContext('2d');
+	var circ = Math.PI * 2;
+	var quart = Math.PI / 2;
+	var imd = null;
+	var circ = Math.PI * 2;
+	var quart = Math.PI / 2;
+
+	var my_gradient  =  createLinearGradient(0,0,400,0);
+
+	ctx.beginPath();
+	ctx.strokeStyle = '#99CC33';
+	ctx.lineCap = 'square';
+	ctx.closePath();
+	ctx.fill();
+	ctx.lineWidth = 10.0;
+
+	imd = ctx.getImageData(0, 0, 240, 240);
+	function draw(current){
+		ctx.putImageData(imd, 0, 0);
+		ctx.beginPath();
+		ctx.arc(120, 120, 70, -(quart), ((circ) * current) - quart, false);
+		ctx.stroke();
+	}
+	//draw(0.6);
+	var t=0;
+	var timer=null;
+	function loadCanvas(now){
+		timer = setInterval(function(){
+			if(t>now){
+				draw(now);//最后一次绘制
+				clearInterval(timer);
+			}else{
+				draw(t);
+				t+=0.01;
+			}
+		},20);
+	}
+	loadCanvas(0.8);
+	timer=null;
 </script>
-
-<!--<script>
-    var height = document.body.clientHeight;
-    var Y = 0;
-    var ul = document.getElementById('ul');
-    var lis = ul.getElementsByTagName('li').length;
-    window.onload = function () {
-        var firstY,lastY = null;
-        var flag = false;
-        var UlTop = 0;
-        function Down() {
-            Y&#45;&#45;;
-            var Top = Y * height;
-            if(Top <= -(lis*height)){
-                Y = -(lis-1);
-                return
-            }
-            UlTop = Top;
-            ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
-        }
-        function Up() {
-            Y++;
-            var Top = Y *height;
-            if(Top > 0){
-                Y = 0;
-                return
-            }
-            UlTop = Top;
-            ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
-        }
-        document.addEventListener('touchstart',function (e) {
-            flag = true;
-            firstY = e.touches[0].clientY;
-        });
-        document.addEventListener('touchmove',function (e) {
-            if(flag){
-                lastY = e.touches[0].clientY;
-                var Top = firstY - lastY;
-                if(Top > 0){
-                    if(UlTop <= -(lis-1)*height){
-                        return
-                    }
-                }else {
-                    if(UlTop >= 0){
-                        return
-                    }
-                }
-                ul.style.webkitTransform = 'translate(0px,'+ (UlTop-Top) +'px)';
-            }
-        });
-        document.addEventListener('touchend',function (e) {
-            lastY = e.changedTouches[0].clientY;
-            if(flag){
-                move(firstY,lastY);
-            }
-        });
-        function move(firstY,lastY) {
-            if(firstY - lastY > 0){
-                Down();
-            }else {
-                Up();
-            }
-        }
-}
-</script>-->
-
-<script src="js/test.js"></script>
 </body>
 </html>
