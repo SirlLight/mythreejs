@@ -1,37 +1,881 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>myStar</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="js/three.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/DeviceOrientationControls.js"></script>
+    <script src="js/FirstPersonControls.js"></script>
+    <script src="js/FZLanTingHeiS-UL-GB_Regular.js"></script>
+
     <script src="js/jquery-3.1.1.js"></script>
-    <style>
-        .test{
-            width: 100px;
-            height: 100px;
-            overflow: scroll;
-        }
-    </style>
+    <script src="js/angular.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ge1doot.js"></script>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
-    <div class="test">
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
-        <p>pppppppppppppppppppppppppppppppppppppppppp</p>
+<body onload="init()">
+<!--<div>
+    <ul id="ul">
+        <li><img src="img/index/2.jpg" alt=""></li>
+        <li><img src="img/index/2.jpg" alt=""></li>
+        <li>
+            <div id="controlBtn" class="controlBtn"></div>
+            <canvas id="main"></canvas>
+        </li>
+    </ul>
+</div>-->
+
+<div class="judge">
+    <div class="judgeWrapper">
+        <div class="phoneWrapper"></div>
+        <p>请打开屏幕旋转功能，切换横屏，体验更佳哦~</p>
     </div>
-    <script>
-        $(".test").scroll(function (e) {
-            console.log(e);
-        })
-    </script>
+</div>
+
+<div class="main" ng-app="myApp" ng-controller="myCtrl">
+    <div class="coverPage" style="background: url('img/cover.jpeg');background-size:100% 100% ">
+        <!--<img src="img/cover.jpeg" alt="">-->
+        <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
+    </div>
+    <div class="universe">
+        <div id="controlBtn" class="controlBtn"></div>
+        <div class="searchResult">
+            <ul class="searchBar">
+                <li value="1">
+                    <img src="img/star/0.png" alt="">
+                    <span>太阳</span>
+                </li>
+                <li value="2">
+                    <img src="img/star/1.png" alt="">
+                    <span>水星</span>
+                </li>
+                <li value="3">
+                    <img src="img/star/2.png" alt="">
+                    <span>金星</span>
+                </li>
+                <li value="4">
+                    <img src="img/star/3.png" alt="">
+                    <span>地球</span>
+                </li>
+                <li value="5">
+                    <img src="img/star/4.png" alt="">
+                    <span>火星</span>
+                </li>
+                <li value="6">
+                    <img src="img/star/5.png" alt="">
+                    <span>木星</span>
+                </li>
+                <li value="7">
+                    <img src="img/star/6.png" alt="">
+                    <span>土星</span>
+                </li>
+                <li value="8">
+                    <img src="img/star/7.png" alt="">
+                    <span>天王星</span>
+                </li>
+                <li value="9">
+                    <img src="img/star/8.png" alt="">
+                    <span>海王星</span>
+                </li>
+            </ul>
+        </div>
+        <canvas id="main" bn-document-click="handleClick( $event )"></canvas>
+    </div>
+    <div class="cover">
+        <div class="coverWrapper">
+            <div class="header">
+                <i class="close"></i>
+                <p class="title">
+                    {{starInfo.title}}
+                    <span class="title2" style="display: none;;">- 基本资料</span>
+                    <span class="title3" style="display: none;">- 事实与特征</span>
+                    <span class="title4" style="display: none;">- 图片走廊</span>
+                </p>
+            </div>
+            <div class="wrapper">
+                <ul class="sidebar">
+                    <li value="1"><i class="first active"></i></li>
+                    <li value="2"><i class="second"></i></li>
+                    <li value="3"><i class="third"></i></li>
+                    <li value="4"><i class="forth"></i></li>
+                </ul>
+                <div class="content">
+                    <div class="content1" style="display: block">
+                        <div class="contentWrapper">
+                            <div class="tempWrapper">
+                                <div class="starImg">
+                                    <img src={{starInfo.content1.img}} alt="">
+                                </div>
+                            </div>
+                            <div class="desText">
+                                <p class="title">{{starInfo.content1.name}}</p>
+                                <p>英文名：{{starInfo.content1.english}}</p>
+                                <p>特点：{{starInfo.content1.feature}}</p>
+                                <p>外观：{{starInfo.content1.appearance}}</p>
+                                <p>卫星小伙伴：{{starInfo.content1.partner}}</p>
+                                <p>探索：{{starInfo.content1.explore}}</p>
+                                <p>一句话描述：{{starInfo.content1.des}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <p ng-repeat="content in starInfo.content2">{{content}}</p>
+                    </div>
+                    <div class="content3">
+                        <div class="table">
+                            <p class="line" ng-repeat="(key,item) in starInfo.content3">
+                                <span class="one">{{key}}</span>
+                                <span>{{item}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content4">
+                        <div style="text-align:center;clear:both;"></div>
+                        <canvas id="canvas" class="starPic">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".sidebar>li").click(function(){
+        $(this).children("i").addClass("active");
+        $(this).siblings("li").children("i").removeClass("active");
+        $(".content"+$(this).val()).attr('style','display: block;').siblings("div").removeAttr("style");
+        if($(this).val()==2){
+            $(".title2").siblings("span").attr('style','display: none;');
+            $(".title2").attr('style','display: inline;');
+        }
+        else if($(this).val()==3){
+            $(".title3").siblings("span").attr('style','display: none;');
+            $(".title3").attr('style','display: inline;');
+        }
+        else if($(this).val()==4){
+            $(".title4").siblings("span").attr('style','display: none;');
+            $(".title4").attr('style','display: inline;');
+        }
+        else{
+            $(".title2").attr('style','display: none;');
+            $(".title3").attr('style','display: none;');
+        }
+        if($(this).val()==4){
+            (function () {
+                /* ==== definitions ==== */
+                var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1,2];
+                var Poly,Diapo,init,run;
+                // ---- poly constructor ----
+                Poly = function (parent, face) {
+                    this.parent = parent;
+                    this.ctx    = ctx;
+                    this.color  = face.fill || false;
+                    this.points = [];
+                    if (!face.img) {
+                        // ---- create points ----
+                        for (var i = 0; i < 4; i++) {
+                            this.points[i] = new ge1doot.transform3D.Point(
+                                    parent.pc.x + (face.x[i] * parent.normalZ) + (face.z[i] * parent.normalX),
+                                    parent.pc.y +  face.y[i],
+                                    parent.pc.z + (face.x[i] * parent.normalX) + (-face.z[i] * parent.normalZ)
+                            );
+                        }
+                        this.points[3].next = false;
+                    }
+                };
+                // ---- diapo constructor ----
+                Diapo = function (path, img, structure) {
+                    // ---- create image ----
+                    this.img = new ge1doot.transform3D.Image(
+                            this, path + img.img, 1, {
+                                isLoaded: function(img) {
+                                    img.parent.isLoaded = true;
+                                    img.parent.loaded(img);
+                                }
+                            }
+                    );
+                    this.visible  = false;
+                    this.normalX  = img.nx;
+                    this.normalZ  = img.nz;
+                    // ---- point center ----
+                    this.pc = new ge1doot.transform3D.Point(img.x, img.y, img.z);
+                    // ---- target positions ----
+                    this.tx = img.x + (img.nx * Math.sqrt(camera.focalLength) * 20);
+                    this.tz = img.z - (img.nz * Math.sqrt(camera.focalLength) * 20);
+                    // ---- create polygons ----
+                    this.poly = [];
+                    for (var i = -1, p; p = structure[++i];) {
+                        layers[i] = (p.img === true ? 1 : 2);
+                        this.poly.push(
+                                new Poly(this, p)
+                        );
+                    }
+                };
+                // ---- init section ----
+                init = function (json) {
+                    // draw poly primitive
+                    Poly.prototype.drawPoly = ge1doot.transform3D.drawPoly;
+                    // ---- init screen ----
+                    scr = new ge1doot.Screen({
+                        container: document.querySelector(".starPic")
+                    });
+                    ctx = scr.ctx;
+                    scr.resize();
+                    // ---- init pointer ----
+                    pointer = new ge1doot.Pointer({
+                        tap: function () {
+                            if (camera.over) {
+                                if (camera.over === camera.target.elem) {
+                                    // ---- return to the center ----
+                                    camera.target.x = 0;
+                                    camera.target.z = 0;
+                                    camera.target.elem = false;
+                                } else {
+                                    // ---- goto diapo ----
+                                    camera.target.elem = camera.over;
+                                    camera.target.x = camera.over.tx;
+                                    camera.target.z = camera.over.tz;
+                                    // ---- adapt tesselation level to distance ----
+                                    for (var i = 0, d; d = diapo[i++];) {
+                                        var dx = camera.target.x - d.pc.x;
+                                        var dz = camera.target.z - d.pc.z;
+                                        var dist = Math.sqrt(dx * dx + dz * dz);
+                                        var lev = (dist > 1500) ? quality[0] : quality[1];
+                                        d.img.setLevel(lev);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    // ---- init camera ----
+                    camera = new ge1doot.transform3D.Camera({
+                        focalLength: Math.sqrt(scr.width) * 10,
+                        easeTranslation: 0.025,
+                        easeRotation: 0.06,
+                        disableRz: true
+                    }, {
+                        move: function () {
+                            this.over = false;
+                            // ---- rotation ----
+                            if (pointer.isDraging) {
+                                this.target.elem = false;
+                                this.target.ry = -pointer.Xi * 0.01;
+                                this.target.rx = (pointer.Y - scr.height * 0.5) / (scr.height * 0.5);
+                            } else {
+                                if (this.target.elem) {
+                                    this.target.ry = Math.atan2(
+                                            this.target.elem.pc.x - this.x,
+                                            this.target.elem.pc.z - this.z
+                                    );
+                                }
+                            }
+                            this.target.rx *= 0.9;
+                        }
+                    });
+                    camera.z  = -10000;
+                    camera.py = 0;
+                    //create images ----
+                    var tempImgdata=json.imgdata[parseInt(window.index)];
+                    console.log(tempImgdata);
+                    for (var i = 0, img; img = tempImgdata[i++];) {
+                        diapo.push(
+                                new Diapo(
+                                        json.options.imagesPath,
+                                        img,
+                                        json.structure
+                                )
+                        );
+                    }
+                    // ---- start engine ---- >>>
+                    setInterval(function() {
+                        quality = (fps > 50) ? [2,3] : [1,2];
+                        fps = 0;
+                    }, 1000);
+                    run();
+                };
+                // ---- main loop ----
+                run = function () {
+                    // ---- clear screen ----
+                    ctx.clearRect(0, 0, scr.width, scr.height);
+                    // ---- camera ----
+                    camera.move();
+                    // ---- draw layers ----
+                    for (var k = -1, l; l = layers[++k];) {
+                        light = false;
+                        for (var i = 0, d; d = diapo[i++];) {
+                            (l === 1 && d.draw()) ||
+                            (d.visible && d.poly[k].draw());
+                        }
+                    }
+                    // ---- cursor ----
+                    if (camera.over && !pointer.isDraging) {
+                        scr.setCursor("pointer");
+                    } else {
+                        scr.setCursor("move");
+                    }
+                    // ---- loop ----
+                    fps++;
+                    requestAnimFrame(run);
+                };
+                /* ==== prototypes ==== */
+                Poly.prototype.draw = function () {
+                    // ---- color light ----
+                    var c = this.color;
+                    if (c.light || !light) {
+                        var s = c.light ? this.parent.light : 1;
+                        // ---- rgba color ----
+                        light = "rgba(" +
+                                Math.round(c.r * s) + "," +
+                                Math.round(c.g * s) + "," +
+                                Math.round(c.b * s) + "," + (c.a || 1) + ")";
+                        ctx.fillStyle = light;
+                    }
+                    // ---- paint poly ----
+                    if (!c.light || this.parent.light < 1) {
+                        // ---- projection ----
+                        for (
+                                var i = 0;
+                                this.points[i++].projection();
+                        );
+                        this.drawPoly();
+                        ctx.fill();
+                    }
+                }
+                /* ==== image onload ==== */
+                Diapo.prototype.loaded = function (img) {
+                    // ---- create points ----
+                    var d = [-1,1,1,-1,1,1,-1,-1];
+                    var w = img.texture.width  * 0.5;
+                    var h = img.texture.height * 0.5;
+                    for (var i = 0; i < 4; i++) {
+                        img.points[i] = new ge1doot.transform3D.Point(
+                                this.pc.x + (w * this.normalZ * d[i]),
+                                this.pc.y + (h * d[i + 4]),
+                                this.pc.z + (w * this.normalX * d[i])
+                        );
+                    }
+                }
+                /* ==== images draw ==== */
+                Diapo.prototype.draw = function () {
+                    // ---- visibility ----
+                    this.pc.projection();
+                    if (this.pc.Z > -(camera.focalLength >> 1) && this.img.transform3D(true)) {
+                        // ---- light ----
+                        this.light = 0.5 + Math.abs(this.normalZ * camera.cosY - this.normalX * camera.sinY) * 0.6;
+                        // ---- draw image ----
+                        this.visible = true;
+                        this.img.draw();
+                        // ---- test pointer inside ----
+                        if (pointer.hasMoved || pointer.isDown) {
+                            if (
+                                    this.img.isPointerInside(
+                                            pointer.X,
+                                            pointer.Y
+                                    )
+                            ) camera.over = this;
+                        }
+                    } else this.visible = false;
+                    return true;
+                }
+                return {
+                    //调用loadJS加载数据
+                    load : function (data) {
+                        ge1doot.loadJS(
+                                "js/imageTransform3D.js",
+                                init, data
+                        );
+                    }
+                }
+            })().load({
+                imgdata:[
+                    //太阳
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //水星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/mercury/9.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/mercury/1.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/mercury/3.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/mercury/5.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/mercury/4.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mercury/6.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mercury/11.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'img/gallery/mercury/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/mercury/12.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'img/gallery/mercury/15.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //金星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //地球
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //火星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //木星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //土星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //天王星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //海王星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ]
+                ],
+                structure:[
+                    {
+                        // wall
+                        fill: {r:255, g:255, b:255, light:1},
+                        x: [-1001,-490,-490,-1001],
+                        z: [-500,-500,-500,-500],
+                        y: [500,500,-500,-500]
+                    },{
+                        // wall
+                        fill: {r:255, g:255, b:255, light:1},
+                        x: [-501,2,2,-500],
+                        z: [-500,-500,-500,-500],
+                        y: [500,500,-500,-500]
+                    },{
+                        // wall
+                        fill: {r:255, g:255, b:255, light:1},
+                        x: [0,502,502,0],
+                        z: [-500,-500,-500,-500],
+                        y: [500,500,-500,-500]
+                    },{
+                        // wall
+                        fill: {r:255, g:255, b:255, light:1},
+                        x: [490,1002,1002,490],
+                        z: [-500,-500,-500,-500],
+                        y: [500,500,-500,-500]
+                    },{
+                        // shadow
+                        fill: {r:0, g:0, b:0, a:0.2},
+                        x: [-420,420,420,-420],
+                        z: [-500,-500,-500,-500],
+                        y: [150, 150,-320,-320]
+                    },{
+                        // shadow
+                        fill: {r:0, g:0, b:0, a:0.2},
+                        x: [-20,20,20,-20],
+                        z: [-500,-500,-500,-500],
+                        y: [250, 250,150,150]
+                    },{
+                        // shadow
+                        fill: {r:0, g:0, b:0, a:0.2},
+                        x: [-20,20,20,-20],
+                        z: [-500,-500,-500,-500],
+                        y: [-320, -320,-500,-500]
+                    },{
+                        // shadow
+                        fill: {r:0, g:0, b:0, a:0.2},
+                        x: [-20,20,10,-10],
+                        z: [-500,-500,-100,-100],
+                        y: [-500, -500,-500,-500]
+                    },{
+                        // base
+                        fill: {r:32, g:32, b:32},
+                        x: [-50,50,50,-50],
+                        z: [-150,-150,-50,-50],
+                        y: [-500,-500,-500,-500]
+                    },{
+                        // support
+                        fill: {r:16, g:16, b:16},
+                        x: [-10,10,10,-10],
+                        z: [-100,-100,-100,-100],
+                        y: [300,300,-500,-500]
+                    },{
+                        // frame
+                        fill: {r:255, g:255, b:255},
+                        x: [-320,-320,-320,-320],
+                        z: [0,-20,-20,0],
+                        y: [-190,-190,190,190]
+                    },{
+                        // frame
+                        fill: {r:255, g:255, b:255},
+                        x: [320,320,320,320],
+                        z: [0,-20,-20,0],
+                        y: [-190,-190,190,190]
+                    },
+                    {img:true},
+                    {
+                        // ceilingLight
+                        fill: {r:255, g:128, b:0},
+                        x: [-50,50,50,-50],
+                        z: [450,450,550,550],
+                        y: [500,500,500,500]
+                    },{
+                        // groundLight
+                        fill: {r:255, g:128, b:0},
+                        x: [-50,50,50,-50],
+                        z: [450,450,550,550],
+                        y: [-500,-500,-500,-500]
+                    }
+                ],
+                options:{
+                    imagesPath: ""
+                }
+            });
+        }
+    });
+    $('.close').click(function (e) {
+        e.preventDefault();
+        document.querySelector(".cover").style.display="none";
+        $(".sidebar>li:eq(0)").children("i").addClass('active');
+        $(".sidebar>li:eq(0)").siblings().children("i").removeClass("active");
+        $('.content1').attr('style','display: block;');
+        $('.content1').siblings('div').removeAttr("style");
+        document.querySelector(".controlBtn").style.display="block";
+        document.querySelector(".searchResult").style.display="block";
+        if(tempIndex){
+            stars.splice(tempIndex,0,tempStars);
+            tempIndex=undefined;
+        }
+    });
+    (function () {
+        orient();
+    })()
+    function orient() {
+        if ((window.orientation == 90 || window.orientation == -90)||(window.innerWidth>window.innerHeight)) {
+            //横屏
+            $('.judge').css('visibility','hidden');
+            $('.main').css('visibility','visible');
+            setTimeout(function () {
+                $('.coverPage').fadeOut('slow');
+                $('.universe').css('visibility','visible');
+            },3000)
+            return false;
+        }
+        else if ((window.orientation == 0 || window.orientation == 180)||(window.innerWidth<window.innerHeight)) {
+            //竖屏
+            $('.judge').css('visibility','visible');
+            $('.main').css('visibility','hidden');
+            $('.coverPage').fadeIn('slow');
+            $('.universe').css('visibility','hidden');
+            return false;
+        }
+    }
+    /*function orient() {
+     if (window.innerWidth>window.innerHeight) {
+     //横屏
+     /!*$('.judge').css('visibility','hidden');
+     $('.main').css('visibility','visible');
+     *!/
+     alert('heng');
+     $('body').css('transform','rotate(0deg)');
+     return false;
+     }
+     else if (window.innerWidth<window.innerHeight) {
+     //竖屏
+     //$('.judge').css('visibility','visible');
+     var docWidth=$('html')[0].offsetWidth;
+     var docHeight=$('html')[0].offsetHeight;
+     $('body').css('width',docWidth+'px');
+     $('body').css('height',docHeight+'px');
+     $('.main').css('width',docHeight+'px');
+     $('.main').css('height',docWidth+'px');
+     $('.universe').css('width',docHeight+'px');
+     $('.universe').css('height',docWidth+'px');
+     $('.universe>canvas').css('width',docHeight+'px');
+     $('.universe>canvas').css('height',docWidth+'px');
+     $('body').css('transform','rotate(90deg)');
+     return false;
+     }
+     }*/
+    $(window).bind( 'orientationchange', function(e){
+        orient();
+    });
+    /*var canvas2=document.getElementById('starConstruct');
+     var content4=document.querySelector(".content4");
+     /!*canvas2.style.width=content4.clientWidth;
+     canvas2.style.height=content4.clientHeight;*!/
+     var width2=canvas2.clientWidth;
+     var height2=canvas2.clientHeight;
+
+     var camera2, scene2, renderer2;
+     var group2;
+
+     init2();
+     animate2();
+
+     function init2() {
+     camera2 = new THREE.PerspectiveCamera( 40, width2 / height2, 1, 800 );
+     camera2.position.set( -20, 10, 50 );
+     camera2.lookAt( new THREE.Vector3( 0, 0, 0) );
+     scene2 = new THREE.Scene();
+     // Lights
+     var light2 = new THREE.AmbientLight( 0x999999 );
+     scene2.add( light2 );
+     var clipPlanes2 = [
+     new THREE.Plane( new THREE.Vector3( 1,  0,  0 ), 0 ),
+     new THREE.Plane( new THREE.Vector3( 0, -1,  0 ), 0 ),
+     new THREE.Plane( new THREE.Vector3( 0,  0, -1 ), 0 )
+     ];
+     group2 = new THREE.Object3D();
+     for ( var i = 1; i < 3; i ++ ) {
+     var geometry2 = new THREE.SphereBufferGeometry( i / 2, 48, 48 );
+     var material2 = new THREE.MeshStandardMaterial( {
+     color: new THREE.Color( Math.sin( i * 0.5 ) * 0.5 + 0.5, Math.cos( i * 1.5 ) * 0.5 + 0.5, Math.sin( i * 4.5 + 0 ) * 0.5 + 0.5 ),
+     roughness: 0.95,
+     metalness: 0.0,
+     side: THREE.DoubleSide,
+     clippingPlanes: clipPlanes2,
+     clipIntersection: true
+     } );
+     group2.add( new THREE.Mesh( geometry2, material2 ) );
+     }
+     scene2.add( group2 );
+     // Renderer
+     renderer2 = new THREE.WebGLRenderer({canvas: canvas2});
+     renderer2.antialias = true;
+     renderer2.setPixelRatio( window.devicePixelRatio );
+     renderer2.setSize( width2, height2 );
+     renderer2.setClearColor( 0x222222 );
+     renderer2.localClippingEnabled = true;
+     window.addEventListener( 'resize', onWindowResize2, false );
+     // GUI
+     mode = {};
+     mode.clipIntersection = true;
+     mode.clipPosition = 0;
+     // Controls
+     var controls2 = new THREE.OrbitControls( camera2, renderer2.domElement );
+     controls2.target.set( 0, 1, 0 );
+     controls2.update();
+     }
+
+     function onWindowResize2() {
+     camera2.aspect = width2 / height2;
+     camera2.updateProjectionMatrix();
+     renderer2.setSize( width2, height2 );
+     }
+
+     function animate2() {
+     requestAnimationFrame( animate2 );
+     var children = group2.children;
+     for ( var i = 0; i < children.length; i ++ ) {
+     var current = children[ i ].material;
+     for ( var j = 0; j < current.clippingPlanes.length; j ++ ) {
+     var plane = current.clippingPlanes[ j ];
+     plane.constant = ( 49 * plane.constant + mode.clipPosition ) / 50;
+     }
+     }
+     renderer2.render( scene2, camera2 );
+     }*/
+</script>
+
+<!--<script>
+    var height = document.body.clientHeight;
+    var Y = 0;
+    var ul = document.getElementById('ul');
+    var lis = ul.getElementsByTagName('li').length;
+    window.onload = function () {
+        var firstY,lastY = null;
+        var flag = false;
+        var UlTop = 0;
+        function Down() {
+            Y&#45;&#45;;
+            var Top = Y * height;
+            if(Top <= -(lis*height)){
+                Y = -(lis-1);
+                return
+            }
+            UlTop = Top;
+            ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
+        }
+        function Up() {
+            Y++;
+            var Top = Y *height;
+            if(Top > 0){
+                Y = 0;
+                return
+            }
+            UlTop = Top;
+            ul.style.webkitTransform = 'translate(0px,'+ Top +'px)';
+        }
+        document.addEventListener('touchstart',function (e) {
+            flag = true;
+            firstY = e.touches[0].clientY;
+        });
+        document.addEventListener('touchmove',function (e) {
+            if(flag){
+                lastY = e.touches[0].clientY;
+                var Top = firstY - lastY;
+                if(Top > 0){
+                    if(UlTop <= -(lis-1)*height){
+                        return
+                    }
+                }else {
+                    if(UlTop >= 0){
+                        return
+                    }
+                }
+                ul.style.webkitTransform = 'translate(0px,'+ (UlTop-Top) +'px)';
+            }
+        });
+        document.addEventListener('touchend',function (e) {
+            lastY = e.changedTouches[0].clientY;
+            if(flag){
+                move(firstY,lastY);
+            }
+        });
+        function move(firstY,lastY) {
+            if(firstY - lastY > 0){
+                Down();
+            }else {
+                Up();
+            }
+        }
+}
+</script>-->
+
+<script src="js/test.js"></script>
+<!--<script src="js/star.js"></script>-->
 </body>
 </html>

@@ -43,105 +43,107 @@
 </div>
 
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
-    <div class="coverPage" style="background: url('img/cover.jpeg');background-size:100% 100% ">
-        <!--<img src="img/cover.jpeg" alt="">-->
-        <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
-    </div>
-    <div class="universe">
-        <div id="controlBtn" class="controlBtn"></div>
-        <div class="searchResult">
-            <ul class="searchBar">
-                <li value="1">
-                    <img src="img/star/0.png" alt="">
-                    <span>太阳</span>
-                </li>
-                <li value="2">
-                    <img src="img/star/1.png" alt="">
-                    <span>水星</span>
-                </li>
-                <li value="3">
-                    <img src="img/star/2.png" alt="">
-                    <span>金星</span>
-                </li>
-                <li value="4">
-                    <img src="img/star/3.png" alt="">
-                    <span>地球</span>
-                </li>
-                <li value="5">
-                    <img src="img/star/4.png" alt="">
-                    <span>火星</span>
-                </li>
-                <li value="6">
-                    <img src="img/star/5.png" alt="">
-                    <span>木星</span>
-                </li>
-                <li value="7">
-                    <img src="img/star/6.png" alt="">
-                    <span>土星</span>
-                </li>
-                <li value="8">
-                    <img src="img/star/7.png" alt="">
-                    <span>天王星</span>
-                </li>
-                <li value="9">
-                    <img src="img/star/8.png" alt="">
-                    <span>海王星</span>
-                </li>
-            </ul>
+    <div class="mainWrapper">
+        <div class="coverPage" style="background: url('img/cover.jpeg');background-size:100% 100% ">
+            <!--<img src="img/cover.jpeg" alt="">-->
+            <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
         </div>
-        <canvas id="main" bn-document-click="handleClick( $event )"></canvas>
-    </div>
-    <div class="cover">
-        <div class="coverWrapper">
-            <div class="header">
-                <i class="close"></i>
-                <p class="title">
-                    {{starInfo.title}}
-                    <span class="title2" style="display: none;;">- 基本资料</span>
-                    <span class="title3" style="display: none;">- 事实与特征</span>
-                    <span class="title4" style="display: none;">- 图片走廊</span>
-                </p>
-            </div>
-            <div class="wrapper">
-                <ul class="sidebar">
-                    <li value="1"><i class="first active"></i></li>
-                    <li value="2"><i class="second"></i></li>
-                    <li value="3"><i class="third"></i></li>
-                    <li value="4"><i class="forth"></i></li>
+        <div class="universe">
+            <div id="controlBtn" class="controlBtn"></div>
+            <div class="searchResult">
+                <ul class="searchBar">
+                    <li value="1">
+                        <img src="img/star/0.png" alt="">
+                        <span>太阳</span>
+                    </li>
+                    <li value="2">
+                        <img src="img/star/1.png" alt="">
+                        <span>水星</span>
+                    </li>
+                    <li value="3">
+                        <img src="img/star/2.png" alt="">
+                        <span>金星</span>
+                    </li>
+                    <li value="4">
+                        <img src="img/star/3.png" alt="">
+                        <span>地球</span>
+                    </li>
+                    <li value="5">
+                        <img src="img/star/4.png" alt="">
+                        <span>火星</span>
+                    </li>
+                    <li value="6">
+                        <img src="img/star/5.png" alt="">
+                        <span>木星</span>
+                    </li>
+                    <li value="7">
+                        <img src="img/star/6.png" alt="">
+                        <span>土星</span>
+                    </li>
+                    <li value="8">
+                        <img src="img/star/7.png" alt="">
+                        <span>天王星</span>
+                    </li>
+                    <li value="9">
+                        <img src="img/star/8.png" alt="">
+                        <span>海王星</span>
+                    </li>
                 </ul>
-                <div class="content">
-                    <div class="content1" style="display: block">
-                        <div class="contentWrapper">
-                            <div class="tempWrapper">
-                                <div class="starImg">
-                                    <img src={{starInfo.content1.img}} alt="">
+            </div>
+            <canvas id="main" bn-document-click="handleClick( $event )"></canvas>
+        </div>
+        <div class="cover">
+            <div class="coverWrapper">
+                <div class="header">
+                    <i class="close"></i>
+                    <p class="title">
+                        {{starInfo.title}}
+                        <span class="title2" style="display: none;;">- 基本资料</span>
+                        <span class="title3" style="display: none;">- 事实与特征</span>
+                        <span class="title4" style="display: none;">- 图片走廊</span>
+                    </p>
+                </div>
+                <div class="wrapper">
+                    <ul class="sidebar">
+                        <li value="1"><i class="first active"></i></li>
+                        <li value="2"><i class="second"></i></li>
+                        <li value="3"><i class="third"></i></li>
+                        <li value="4"><i class="forth"></i></li>
+                    </ul>
+                    <div class="content">
+                        <div class="content1" style="display: block">
+                            <div class="contentWrapper">
+                                <div class="tempWrapper">
+                                    <div class="starImg">
+                                        <img src={{starInfo.content1.img}} alt="">
+                                    </div>
+                                </div>
+                                <div class="desText">
+                                    <p class="title">{{starInfo.content1.name}}</p>
+                                    <p>英文名：{{starInfo.content1.english}}</p>
+                                    <p>特点：{{starInfo.content1.feature}}</p>
+                                    <p>外观：{{starInfo.content1.appearance}}</p>
+                                    <p>卫星小伙伴：{{starInfo.content1.partner}}</p>
+                                    <p>探索：{{starInfo.content1.explore}}</p>
+                                    <p>一句话描述：{{starInfo.content1.des}}</p>
                                 </div>
                             </div>
-                            <div class="desText">
-                                <p class="title">{{starInfo.content1.name}}</p>
-                                <p>英文名：{{starInfo.content1.english}}</p>
-                                <p>特点：{{starInfo.content1.feature}}</p>
-                                <p>外观：{{starInfo.content1.appearance}}</p>
-                                <p>卫星小伙伴：{{starInfo.content1.partner}}</p>
-                                <p>探索：{{starInfo.content1.explore}}</p>
-                                <p>一句话描述：{{starInfo.content1.des}}</p>
+                        </div>
+                        <div class="content2">
+                            <p ng-repeat="content in starInfo.content2">{{content}}</p>
+                        </div>
+                        <div class="content3">
+                            <div class="table">
+                                <p class="line" ng-repeat="(key,item) in starInfo.content3">
+                                    <span class="one">{{key}}</span>
+                                    <span>{{item}}</span>
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="content2">
-                        <p ng-repeat="content in starInfo.content2">{{content}}</p>
-                    </div>
-                    <div class="content3">
-                        <div class="table">
-                            <p class="line" ng-repeat="(key,item) in starInfo.content3">
-                                <span class="one">{{key}}</span>
-                                <span>{{item}}</span>
-                            </p>
+                        <div class="content4">
+                            <div style="text-align:center;clear:both;"></div>
+                            <canvas id="canvas" class="starPic">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
                         </div>
-                    </div>
-                    <div class="content4">
-                        <div style="text-align:center;clear:both;"></div>
-                        <canvas id="canvas" class="starPic">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
                     </div>
                 </div>
             </div>
@@ -398,27 +400,8 @@
                 }
             })().load({
                 imgdata:[
-                        //太阳
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //水星
-                        [
+                    //太阳
+                    [
                         // north
                         {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
                         {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
@@ -436,8 +419,27 @@
                         {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
                         {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
                     ],
-                        //金星
-                        [
+                    //水星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/mercury/9.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/mercury/1.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/mercury/3.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/mercury/5.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/mercury/4.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mercury/6.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mercury/11.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'img/gallery/mercury/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/mercury/12.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'img/gallery/mercury/15.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //金星
+                    [
                         // north
                         {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
                         {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
@@ -455,120 +457,120 @@
                         {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
                         {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
                     ],
-                        //地球
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //火星
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //木星
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //土星
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //天王星
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ],
-                        //海王星
-                        [
-                            // north
-                            {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                            {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
-                            {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
-                            // east
-                            {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                            {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                            {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-                            // south
-                            {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                            {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-                            // west
-                            {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                            {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                            {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
-                        ]
+                    //地球
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //火星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //木星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //土星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //天王星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ],
+                    //海王星
+                    [
+                        // north
+                        {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
+                        // east
+                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        // south
+                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        // west
+                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                    ]
                 ],
                 structure:[
                     {
@@ -681,8 +683,31 @@
     });
     (function () {
         orient();
+        setTimeout(function () {
+            $('.coverPage').fadeOut('slow');
+            $('.universe').css('visibility','visible');
+        },3000)
     })()
     function orient() {
+        if((window.orientation==90||window.orientation==-90)||(window.innerWidth>window.innerHeight)){
+            console.log('横屏');
+            $('.main').removeAttr('style');
+            return false;
+        }
+        else if((window.orientation==0||window.orientation==180)||(window.innerHeight>window.innerWidth)){
+            console.log('竖屏');
+            var wid=window.innerWidth;
+            var hei=window.innerHeight;
+            $('.main').width(hei);
+            $('.main').height(wid);
+            $('.main').css('top',(hei-wid)/2);
+            $('.main').css('left',0-(hei-wid)/2);
+            $('.main').css('transform' , 'rotate(90deg)');
+            $('.main').css('transform-origin' , '50% 50%');
+            return false;
+        }
+    }
+    /*function orient() {
         if ((window.orientation == 90 || window.orientation == -90)||(window.innerWidth>window.innerHeight)) {
             //横屏
             $('.judge').css('visibility','hidden');
@@ -696,115 +721,118 @@
         else if ((window.orientation == 0 || window.orientation == 180)||(window.innerWidth<window.innerHeight)) {
             //竖屏
             $('.judge').css('visibility','visible');
-            return false;
-        }
-    }
-    /*function orient() {
-        if (window.innerWidth>window.innerHeight) {
-            //横屏
-            /!*$('.judge').css('visibility','hidden');
-             $('.main').css('visibility','visible');
-             *!/
-            alert('heng');
-            $('body').css('transform','rotate(0deg)');
-            return false;
-        }
-        else if (window.innerWidth<window.innerHeight) {
-            //竖屏
-            //$('.judge').css('visibility','visible');
-            var docWidth=$('html')[0].offsetWidth;
-            var docHeight=$('html')[0].offsetHeight;
-            $('body').css('width',docWidth+'px');
-            $('body').css('height',docHeight+'px');
-            $('.main').css('width',docHeight+'px');
-            $('.main').css('height',docWidth+'px');
-            $('.universe').css('width',docHeight+'px');
-            $('.universe').css('height',docWidth+'px');
-            $('.universe>canvas').css('width',docHeight+'px');
-            $('.universe>canvas').css('height',docWidth+'px');
-            $('body').css('transform','rotate(90deg)');
+            $('.main').css('visibility','hidden');
+            $('.coverPage').fadeIn('slow');
+            $('.universe').css('visibility','hidden');
             return false;
         }
     }*/
+    /*function orient() {
+     if (window.innerWidth>window.innerHeight) {
+     //横屏
+     /!*$('.judge').css('visibility','hidden');
+     $('.main').css('visibility','visible');
+     *!/
+     alert('heng');
+     $('body').css('transform','rotate(0deg)');
+     return false;
+     }
+     else if (window.innerWidth<window.innerHeight) {
+     //竖屏
+     //$('.judge').css('visibility','visible');
+     var docWidth=$('html')[0].offsetWidth;
+     var docHeight=$('html')[0].offsetHeight;
+     $('body').css('width',docWidth+'px');
+     $('body').css('height',docHeight+'px');
+     $('.main').css('width',docHeight+'px');
+     $('.main').css('height',docWidth+'px');
+     $('.universe').css('width',docHeight+'px');
+     $('.universe').css('height',docWidth+'px');
+     $('.universe>canvas').css('width',docHeight+'px');
+     $('.universe>canvas').css('height',docWidth+'px');
+     $('body').css('transform','rotate(90deg)');
+     return false;
+     }
+     }*/
     $(window).bind( 'orientationchange', function(e){
         orient();
     });
     /*var canvas2=document.getElementById('starConstruct');
-    var content4=document.querySelector(".content4");
-    /!*canvas2.style.width=content4.clientWidth;
-    canvas2.style.height=content4.clientHeight;*!/
-    var width2=canvas2.clientWidth;
-    var height2=canvas2.clientHeight;
+     var content4=document.querySelector(".content4");
+     /!*canvas2.style.width=content4.clientWidth;
+     canvas2.style.height=content4.clientHeight;*!/
+     var width2=canvas2.clientWidth;
+     var height2=canvas2.clientHeight;
 
-    var camera2, scene2, renderer2;
-    var group2;
+     var camera2, scene2, renderer2;
+     var group2;
 
-    init2();
-    animate2();
+     init2();
+     animate2();
 
-    function init2() {
-        camera2 = new THREE.PerspectiveCamera( 40, width2 / height2, 1, 800 );
-        camera2.position.set( -20, 10, 50 );
-        camera2.lookAt( new THREE.Vector3( 0, 0, 0) );
-        scene2 = new THREE.Scene();
-        // Lights
-        var light2 = new THREE.AmbientLight( 0x999999 );
-        scene2.add( light2 );
-        var clipPlanes2 = [
-            new THREE.Plane( new THREE.Vector3( 1,  0,  0 ), 0 ),
-            new THREE.Plane( new THREE.Vector3( 0, -1,  0 ), 0 ),
-            new THREE.Plane( new THREE.Vector3( 0,  0, -1 ), 0 )
-        ];
-        group2 = new THREE.Object3D();
-        for ( var i = 1; i < 3; i ++ ) {
-            var geometry2 = new THREE.SphereBufferGeometry( i / 2, 48, 48 );
-            var material2 = new THREE.MeshStandardMaterial( {
-                color: new THREE.Color( Math.sin( i * 0.5 ) * 0.5 + 0.5, Math.cos( i * 1.5 ) * 0.5 + 0.5, Math.sin( i * 4.5 + 0 ) * 0.5 + 0.5 ),
-                roughness: 0.95,
-                metalness: 0.0,
-                side: THREE.DoubleSide,
-                clippingPlanes: clipPlanes2,
-                clipIntersection: true
-            } );
-            group2.add( new THREE.Mesh( geometry2, material2 ) );
-        }
-        scene2.add( group2 );
-        // Renderer
-        renderer2 = new THREE.WebGLRenderer({canvas: canvas2});
-        renderer2.antialias = true;
-        renderer2.setPixelRatio( window.devicePixelRatio );
-        renderer2.setSize( width2, height2 );
-        renderer2.setClearColor( 0x222222 );
-        renderer2.localClippingEnabled = true;
-        window.addEventListener( 'resize', onWindowResize2, false );
-        // GUI
-        mode = {};
-        mode.clipIntersection = true;
-        mode.clipPosition = 0;
-        // Controls
-        var controls2 = new THREE.OrbitControls( camera2, renderer2.domElement );
-        controls2.target.set( 0, 1, 0 );
-        controls2.update();
-    }
+     function init2() {
+     camera2 = new THREE.PerspectiveCamera( 40, width2 / height2, 1, 800 );
+     camera2.position.set( -20, 10, 50 );
+     camera2.lookAt( new THREE.Vector3( 0, 0, 0) );
+     scene2 = new THREE.Scene();
+     // Lights
+     var light2 = new THREE.AmbientLight( 0x999999 );
+     scene2.add( light2 );
+     var clipPlanes2 = [
+     new THREE.Plane( new THREE.Vector3( 1,  0,  0 ), 0 ),
+     new THREE.Plane( new THREE.Vector3( 0, -1,  0 ), 0 ),
+     new THREE.Plane( new THREE.Vector3( 0,  0, -1 ), 0 )
+     ];
+     group2 = new THREE.Object3D();
+     for ( var i = 1; i < 3; i ++ ) {
+     var geometry2 = new THREE.SphereBufferGeometry( i / 2, 48, 48 );
+     var material2 = new THREE.MeshStandardMaterial( {
+     color: new THREE.Color( Math.sin( i * 0.5 ) * 0.5 + 0.5, Math.cos( i * 1.5 ) * 0.5 + 0.5, Math.sin( i * 4.5 + 0 ) * 0.5 + 0.5 ),
+     roughness: 0.95,
+     metalness: 0.0,
+     side: THREE.DoubleSide,
+     clippingPlanes: clipPlanes2,
+     clipIntersection: true
+     } );
+     group2.add( new THREE.Mesh( geometry2, material2 ) );
+     }
+     scene2.add( group2 );
+     // Renderer
+     renderer2 = new THREE.WebGLRenderer({canvas: canvas2});
+     renderer2.antialias = true;
+     renderer2.setPixelRatio( window.devicePixelRatio );
+     renderer2.setSize( width2, height2 );
+     renderer2.setClearColor( 0x222222 );
+     renderer2.localClippingEnabled = true;
+     window.addEventListener( 'resize', onWindowResize2, false );
+     // GUI
+     mode = {};
+     mode.clipIntersection = true;
+     mode.clipPosition = 0;
+     // Controls
+     var controls2 = new THREE.OrbitControls( camera2, renderer2.domElement );
+     controls2.target.set( 0, 1, 0 );
+     controls2.update();
+     }
 
-    function onWindowResize2() {
-        camera2.aspect = width2 / height2;
-        camera2.updateProjectionMatrix();
-        renderer2.setSize( width2, height2 );
-    }
+     function onWindowResize2() {
+     camera2.aspect = width2 / height2;
+     camera2.updateProjectionMatrix();
+     renderer2.setSize( width2, height2 );
+     }
 
-    function animate2() {
-        requestAnimationFrame( animate2 );
-        var children = group2.children;
-        for ( var i = 0; i < children.length; i ++ ) {
-            var current = children[ i ].material;
-            for ( var j = 0; j < current.clippingPlanes.length; j ++ ) {
-                var plane = current.clippingPlanes[ j ];
-                plane.constant = ( 49 * plane.constant + mode.clipPosition ) / 50;
-            }
-        }
-        renderer2.render( scene2, camera2 );
-    }*/
+     function animate2() {
+     requestAnimationFrame( animate2 );
+     var children = group2.children;
+     for ( var i = 0; i < children.length; i ++ ) {
+     var current = children[ i ].material;
+     for ( var j = 0; j < current.clippingPlanes.length; j ++ ) {
+     var plane = current.clippingPlanes[ j ];
+     plane.constant = ( 49 * plane.constant + mode.clipPosition ) / 50;
+     }
+     }
+     renderer2.render( scene2, camera2 );
+     }*/
 </script>
 
 <!--<script>

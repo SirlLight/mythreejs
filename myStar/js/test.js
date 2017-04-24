@@ -304,8 +304,8 @@ function init() {
 function toggle(){
     isDeviceing === 0 ? controls.update() : Devices.update();
     requestAnimationFrame(function () {
-     return toggle();
-     });
+        return toggle();
+    });
 }
 
 $(".searchBar>li").click(function(){
@@ -399,9 +399,9 @@ function onDocumentMouseDown(event){
             window.flag=name;
             document.querySelector(".cover").style.display="block";
             /*document.querySelector(".header").style.display="block";
-            document.querySelector(".sidebar").style.display="flex";
-            document.querySelector(".content").style.display="block";
-            document.getElementById("tempFlag").value=name;*/
+             document.querySelector(".sidebar").style.display="flex";
+             document.querySelector(".content").style.display="block";
+             document.getElementById("tempFlag").value=name;*/
             document.querySelector(".controlBtn").style.display="none";
             switch (name) {
                 case "水星":
@@ -468,39 +468,39 @@ function onDocumentMouseDown(event){
                 renderer.render(scene, camera);
             }
             console.log(name,tempIndex);
-             /*if(name=="太阳"){
-                camera.lookAt(new THREE.Vector3(0, 0, 0));
-            }
-            else if(name=='月亮'){
-                camera.lookAt(Moon.position);
-            }
-            else{
-                camera.lookAt(stars[tempIndex].Mesh.position);
-            }*/
+            /*if(name=="太阳"){
+             camera.lookAt(new THREE.Vector3(0, 0, 0));
+             }
+             else if(name=='月亮'){
+             camera.lookAt(Moon.position);
+             }
+             else{
+             camera.lookAt(stars[tempIndex].Mesh.position);
+             }*/
             /*//r^3
-            var rCube=(stars[tempIndex].volume * 3)/(4 * Math.PI );
-            //r
-            var r=Math.pow(rCube, 3);
-            //星球鱼相机之间的距离
-            var axisZ=(5*r)/3;
-            //相机视角与星球切线的长度
-            var m=(4*r)/3;
-            //x和z轴上的差值
-            var n=(4*m)/5;
-            //相机的x
-            //var o=stars[tempIndex].Mesh.position.x+n;
-            var o=stars[tempIndex].Mesh.position.x-10*r;
-            //相机的z
-            var p;
-            //p=stars[tempIndex].Mesh.position.z+n;
-            p=stars[tempIndex].Mesh.position.z-10*r;
-            /!*if(stars[tempIndex].Mesh.position.z>0){
-                    p=stars[tempIndex].Mesh.position.z-n;
-            }
-            else{
-                p=stars[tempIndex].Mesh.position.z+n;
-            }*!/
-            //camera.position.set(o+n,r+n,p+n);*/
+             var rCube=(stars[tempIndex].volume * 3)/(4 * Math.PI );
+             //r
+             var r=Math.pow(rCube, 3);
+             //星球鱼相机之间的距离
+             var axisZ=(5*r)/3;
+             //相机视角与星球切线的长度
+             var m=(4*r)/3;
+             //x和z轴上的差值
+             var n=(4*m)/5;
+             //相机的x
+             //var o=stars[tempIndex].Mesh.position.x+n;
+             var o=stars[tempIndex].Mesh.position.x-10*r;
+             //相机的z
+             var p;
+             //p=stars[tempIndex].Mesh.position.z+n;
+             p=stars[tempIndex].Mesh.position.z-10*r;
+             /!*if(stars[tempIndex].Mesh.position.z>0){
+             p=stars[tempIndex].Mesh.position.z-n;
+             }
+             else{
+             p=stars[tempIndex].Mesh.position.z+n;
+             }*!/
+             //camera.position.set(o+n,r+n,p+n);*/
             id=requestAnimationFrame(move);
         }
     }

@@ -77,29 +77,36 @@ body .main {
   visibility: hidden;
   /*background: #ea445a;*/
 }
-html .main .coverPage,
-body .main .coverPage {
+html .main .mainWrapper,
+body .main .mainWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+html .main .mainWrapper .coverPage,
+body .main .mainWrapper .coverPage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-html .main .coverPage img,
-body .main .coverPage img {
+html .main .mainWrapper .coverPage img,
+body .main .mainWrapper .coverPage img {
   width: 100%;
   height: 100%;
 }
-html .main .universe,
-body .main .universe {
+html .main .mainWrapper .universe,
+body .main .mainWrapper .universe {
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
   visibility: hidden;
 }
-html .main .universe .controlBtn,
-body .main .universe .controlBtn {
+html .main .mainWrapper .universe .controlBtn,
+body .main .mainWrapper .universe .controlBtn {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -108,37 +115,37 @@ body .main .universe .controlBtn {
   background: url(../img/control2.png);
   background-size: 100% 100%;
 }
-html .main .universe .searchResult,
-body .main .universe .searchResult {
+html .main .mainWrapper .universe .searchResult,
+body .main .mainWrapper .universe .searchResult {
   position: absolute;
   width: 100px;
   height: 100%;
 }
-html .main .universe .searchResult .searchBar,
-body .main .universe .searchResult .searchBar {
+html .main .mainWrapper .universe .searchResult .searchBar,
+body .main .mainWrapper .universe .searchResult .searchBar {
   width: 100px;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-html .main .universe .searchResult .searchBar li,
-body .main .universe .searchResult .searchBar li {
+html .main .mainWrapper .universe .searchResult .searchBar li,
+body .main .mainWrapper .universe .searchResult .searchBar li {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html .main .universe .searchResult .searchBar li img,
-body .main .universe .searchResult .searchBar li img {
+html .main .mainWrapper .universe .searchResult .searchBar li img,
+body .main .mainWrapper .universe .searchResult .searchBar li img {
   width: 2.4rem;
   height: 2.4rem;
 }
-html .main .universe .searchResult .searchBar li span,
-body .main .universe .searchResult .searchBar li span {
+html .main .mainWrapper .universe .searchResult .searchBar li span,
+body .main .mainWrapper .universe .searchResult .searchBar li span {
   color: #ffffff;
 }
-html .main .cover,
-body .main .cover {
+html .main .mainWrapper .cover,
+body .main .mainWrapper .cover {
   position: absolute;
   top: 0;
   right: 0;
@@ -148,14 +155,14 @@ body .main .cover {
   display: none;
   flex-direction: column;
 }
-html .main .cover .coverWrapper,
-body .main .cover .coverWrapper {
+html .main .mainWrapper .cover .coverWrapper,
+body .main .mainWrapper .cover .coverWrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-html .main .cover .coverWrapper .header,
-body .main .cover .coverWrapper .header {
+html .main .mainWrapper .cover .coverWrapper .header,
+body .main .mainWrapper .cover .coverWrapper .header {
   width: 100%;
   font-size: 16px;
   line-height: 2.4rem;
@@ -166,13 +173,13 @@ body .main .cover .coverWrapper .header {
   text-align: center;
   border-bottom: 1px solid #e1e1e1;
 }
-html .main .cover .coverWrapper .header .title,
-body .main .cover .coverWrapper .header .title {
+html .main .mainWrapper .cover .coverWrapper .header .title,
+body .main .mainWrapper .cover .coverWrapper .header .title {
   width: 100%;
   text-align: center;
 }
-html .main .cover .coverWrapper .header .close,
-body .main .cover .coverWrapper .header .close {
+html .main .mainWrapper .cover .coverWrapper .header .close,
+body .main .mainWrapper .cover .coverWrapper .header .close {
   display: flex;
   position: absolute;
   left: 0;
@@ -182,141 +189,141 @@ body .main .cover .coverWrapper .header .close {
   justify-content: center;
   align-items: center;
 }
-html .main .cover .coverWrapper .header .close:after,
-body .main .cover .coverWrapper .header .close:after {
+html .main .mainWrapper .cover .coverWrapper .header .close:after,
+body .main .mainWrapper .cover .coverWrapper .header .close:after {
   content: '';
   background: transparent url('../img/index/search-back.png') no-repeat center;
   width: 0.6rem;
   height: 1.2rem;
   background-size: 100% 100%;
 }
-html .main .cover .coverWrapper .wrapper,
-body .main .cover .coverWrapper .wrapper {
+html .main .mainWrapper .cover .coverWrapper .wrapper,
+body .main .mainWrapper .cover .coverWrapper .wrapper {
   width: 100%;
   display: flex;
   flex-grow: 1;
 }
-html .main .cover .coverWrapper .wrapper .sidebar,
-body .main .cover .coverWrapper .wrapper .sidebar {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar {
   width: 4.8rem;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #e1e1e1;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li,
-body .main .cover .coverWrapper .wrapper .sidebar li {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li i,
-body .main .cover .coverWrapper .wrapper .sidebar li i {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li i,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li i {
   width: 2.4rem;
   height: 2.4rem;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .first,
-body .main .cover .coverWrapper .wrapper .sidebar li .first {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .first,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .first {
   background: transparent url('../img/index/list_star.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .first.active,
-body .main .cover .coverWrapper .wrapper .sidebar li .first.active {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .first.active,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .first.active {
   background: transparent url('../img/index/star.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .second,
-body .main .cover .coverWrapper .wrapper .sidebar li .second {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .second,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .second {
   background: transparent url("../img/index/list_info.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .second.active,
-body .main .cover .coverWrapper .wrapper .sidebar li .second.active {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .second.active,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .second.active {
   background: transparent url('../img/index/info.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .third,
-body .main .cover .coverWrapper .wrapper .sidebar li .third {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .third,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .third {
   background: transparent url("../img/index/list_feature.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .third.active,
-body .main .cover .coverWrapper .wrapper .sidebar li .third.active {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .third.active,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .third.active {
   background: transparent url('../img/index/feature.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .forth,
-body .main .cover .coverWrapper .wrapper .sidebar li .forth {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .forth,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .forth {
   background: transparent url("../img/index/list_inner.png") no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .sidebar li .forth.active,
-body .main .cover .coverWrapper .wrapper .sidebar li .forth.active {
+html .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .forth.active,
+body .main .mainWrapper .cover .coverWrapper .wrapper .sidebar li .forth.active {
   background: transparent url('../img/index/inner.png') no-repeat center;
   background-size: 100%;
 }
-html .main .cover .coverWrapper .wrapper .content,
-body .main .cover .coverWrapper .wrapper .content {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content {
   width: 100%;
   overflow: scroll;
 }
-html .main .cover .coverWrapper .wrapper .content::-webkit-scrollbar,
-body .main .cover .coverWrapper .wrapper .content::-webkit-scrollbar {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content::-webkit-scrollbar,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content::-webkit-scrollbar {
   display: none;
 }
-html .main .cover .coverWrapper .wrapper .content .content1,
-body .main .cover .coverWrapper .wrapper .content .content1 {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 {
   display: none;
   flex-grow: 1;
   width: 100%;
   height: 100%;
   overflow: scroll;
 }
-html .main .cover .coverWrapper .wrapper .content .content1::-webkit-scrollbar,
-body .main .cover .coverWrapper .wrapper .content .content1::-webkit-scrollbar {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1::-webkit-scrollbar,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1::-webkit-scrollbar {
   display: none;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
   color: #ffffff;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper {
   display: flex;
   width: 100%;
   flex-direction: row-reverse;
   padding: 0.66666667rem;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg {
   width: 4.26666667rem;
   height: 4.26666667rem;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .tempWrapper .starImg img {
   width: 100%;
   height: 100%;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText {
   padding: 0.66666667rem;
   font-size: 16px;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText p {
   line-height: 20px;
   margin-bottom: 0.66666667rem;
 }
-html .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title,
-body .main .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content1 .contentWrapper .desText .title {
   font-size: 18px;
   font-weight: bolder;
 }
-html .main .cover .coverWrapper .wrapper .content .content2,
-body .main .cover .coverWrapper .wrapper .content .content2 {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content2,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content2 {
   display: none;
   flex-grow: 1;
   width: 100%;
@@ -325,44 +332,44 @@ body .main .cover .coverWrapper .wrapper .content .content2 {
   color: #fff;
   overflow: scroll;
 }
-html .main .cover .coverWrapper .wrapper .content .content2::-webkit-scrollbar,
-body .main .cover .coverWrapper .wrapper .content .content2::-webkit-scrollbar {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content2::-webkit-scrollbar,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content2::-webkit-scrollbar {
   display: none;
 }
-html .main .cover .coverWrapper .wrapper .content .content2 p,
-body .main .cover .coverWrapper .wrapper .content .content2 p {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content2 p,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content2 p {
   word-wrap: break-word;
   font-size: 16px;
   line-height: 32px;
   text-indent: 2em;
 }
-html .main .cover .coverWrapper .wrapper .content .content3,
-body .main .cover .coverWrapper .wrapper .content .content3 {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 {
   display: none;
   flex-grow: 1;
   width: 100%;
   height: 100%;
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table,
-body .main .cover .coverWrapper .wrapper .content .content3 .table {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table {
   height: 100%;
   width: 100%;
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even),
-body .main .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even) {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even),
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even) {
   background: rgba(255, 255, 255, 0.5);
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even).one,
-body .main .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even).one {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even).one,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table p:nth-of-type(even).one {
   border-right: 2px solid rgba(0, 0, 0, 0.03);
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table .line,
-body .main .cover .coverWrapper .wrapper .content .content3 .table .line {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line {
   width: 100%;
   display: flex;
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table .line span,
-body .main .cover .coverWrapper .wrapper .content .content3 .table .line span {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line span,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line span {
   width: 1.33333333rem;
   flex-grow: 1;
   font-size: 16px;
@@ -370,12 +377,12 @@ body .main .cover .coverWrapper .wrapper .content .content3 .table .line span {
   padding-left: 0.66666667rem;
   color: #fff;
 }
-html .main .cover .coverWrapper .wrapper .content .content3 .table .line span.one,
-body .main .cover .coverWrapper .wrapper .content .content3 .table .line span.one {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line span.one,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content3 .table .line span.one {
   border-right: 2px solid rgba(255, 255, 255, 0.5);
 }
-html .main .cover .coverWrapper .wrapper .content .content4,
-body .main .cover .coverWrapper .wrapper .content .content4 {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content4,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content4 {
   background: transparent;
   display: none;
   flex-grow: 1;
@@ -390,13 +397,29 @@ body .main .cover .coverWrapper .wrapper .content .content4 {
   overflow: scroll;
   box-sizing: border-box;
 }
-html .main .cover .coverWrapper .wrapper .content .content4::-webkit-scrollbar,
-body .main .cover .coverWrapper .wrapper .content .content4::-webkit-scrollbar {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content4::-webkit-scrollbar,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content4::-webkit-scrollbar {
   display: none;
 }
-html .main .cover .coverWrapper .wrapper .content .content4 .starPic,
-body .main .cover .coverWrapper .wrapper .content .content4 .starPic {
+html .main .mainWrapper .cover .coverWrapper .wrapper .content .content4 .starPic,
+body .main .mainWrapper .cover .coverWrapper .wrapper .content .content4 .starPic {
   width: 100%;
   height: 100%;
   background: transparent;
+}
+/*竖屏*/
+@media screen and (orientation: portrait) {
+  .main {
+    position: absolute;
+  }
+}
+/*横屏*/
+@media screen and (orientation: landscape) {
+  .main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
