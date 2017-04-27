@@ -101,6 +101,8 @@
                     <span class="title3" style="display: none;">- 事实与特征</span>
                     <span class="title4" style="display: none;">- 图片走廊</span>
                 </p>
+                <i class="play"></i>
+                <audio id="media"></audio>
             </div>
             <div class="wrapper">
                 <ul class="sidebar">
@@ -169,6 +171,7 @@
         else{
             $(".title2").attr('style','display: none;');
             $(".title3").attr('style','display: none;');
+            $(".title4").attr('style','display: none;');
         }
         if($(this).val()==4){
             (function () {
@@ -665,6 +668,16 @@
             });
         }
     });
+    $('.play').click(function () {
+        if(document.getElementById('media').paused){
+            document.getElementById('media').play();
+            $(this).removeClass('stop');
+        }
+        else{
+            document.getElementById('media').pause();
+            $(this).addClass('stop');
+        }
+    });
     $('.close').click(function (e) {
         e.preventDefault();
         document.querySelector(".cover").style.display="none";
@@ -674,6 +687,8 @@
         $('.content1').siblings('div').removeAttr("style");
         document.querySelector(".controlBtn").style.display="block";
         document.querySelector(".searchResult").style.display="block";
+        document.getElementById('media').pause();
+        document.getElementById('media').currentTime = 0;
         if(tempIndex){
             stars.splice(tempIndex,0,tempStars);
             tempIndex=undefined;

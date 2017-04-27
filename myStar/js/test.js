@@ -66,6 +66,7 @@ function init() {
 
     /*orbitControls*/
     controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableKeys=true;//允许键盘控制
     controls.minDistance=0;
     controls.maxDistance=800;
     controls.target = scene.position;
@@ -297,6 +298,7 @@ function init() {
 
     window.addEventListener('resize', onWindowResize, false);
     canvas.addEventListener('mousedown', onDocumentMouseDown, false);
+    document.addEventListener('keydown',onKeyDown,false);
 
     id=requestAnimationFrame(move);
 }
@@ -310,7 +312,6 @@ function toggle(){
 
 $(".searchBar>li").click(function(){
     var val=$(this).val();
-    console.log(val);
     if(val){
         switch (val) {
             case 1:
@@ -343,8 +344,11 @@ $(".searchBar>li").click(function(){
             default:
                 break;
         };
+        document.getElementById('media').src='record/'+window.flag+'.mp3';
         document.querySelector(".cover").style.display="block";
+        document.getElementById('media').play();
         document.querySelector(".searchResult").style.display="none";
+        document.getElementById('controlBtn').style.display='none';
         console.log(window.flag);
     }
     switch (window.flag) {
@@ -397,7 +401,10 @@ function onDocumentMouseDown(event){
                 id = null;
             }
             window.flag=name;
+            document.getElementById('media').src='record/'+window.flag+'.mp3';
+            document.getElementById('media').play();
             document.querySelector(".cover").style.display="block";
+            document.querySelector('.searchResult').style.display='none';
             /*document.querySelector(".header").style.display="block";
              document.querySelector(".sidebar").style.display="flex";
              document.querySelector(".content").style.display="block";
@@ -504,6 +511,41 @@ function onDocumentMouseDown(event){
             id=requestAnimationFrame(move);
         }
     }
+}
+
+function onKeyDown(e) {
+    var e=e||window.event;
+    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+    if('37,38,39,40,65,87,68,83'.indexOf(keyCode)===-1){
+        return;
+    }else{
+        switch (e.keyCode){
+            //W、上（前）
+            case 87:
+            case 38:
+                CameraMove('x',-10);
+                break;
+            //A、左（左）
+            case 65:
+            case 37:
+                CameraMove('z',10);
+                break;
+            //S、下（后）
+            case 83:
+            case 40:
+                CameraMove('x',10);
+                break;
+            //D、右（右）
+            case 68:
+            case 39:
+                CameraMove('z',-10);
+                break;
+        }
+    }
+}
+
+function CameraMove(direction,distance) {
+    camera.position[direction]+=distance;
 }
 
 function update(){
