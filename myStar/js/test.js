@@ -291,7 +291,7 @@ function init() {
     scene.add(particleSystem);
 
     /*gyroscope*/
-    initDeives();
+    Devices=new THREE.DeviceOrientationControls(camera);
     Devices.connect();
     controlBtn.addEventListener("click",controlDevice,false);
     toggle();
@@ -516,7 +516,7 @@ function onDocumentMouseDown(event){
 function onKeyDown(e) {
     var e=e||window.event;
     var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
-    if('37,38,39,40,65,87,68,83'.indexOf(keyCode)===-1){
+    if('37,38,39,40,65,87,68,83,32'.indexOf(keyCode)===-1){
         return;
     }else{
         switch (e.keyCode){
@@ -540,12 +540,20 @@ function onKeyDown(e) {
             case 39:
                 CameraMove('z',-10);
                 break;
+            //空格键
+            case 32:
+                CameraMove('x',1);
+                break;
         }
     }
 }
 
 function CameraMove(direction,distance) {
-    camera.position[direction]+=distance;
+    if(distance!=1){
+        camera.position[direction]+=distance;
+    }else{
+        camera.position.set(200, 50, 0);
+    }
 }
 
 function update(){
