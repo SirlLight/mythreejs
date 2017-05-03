@@ -47,6 +47,7 @@
         <!--<img src="img/cover.jpeg" alt="">-->
         <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
     </div>
+    <div class="guidePage"></div>
     <div class="universe">
         <div id="controlBtn" class="controlBtn"></div>
         <div class="searchResult">
@@ -699,6 +700,10 @@
         if(tempIndex){
             stars.splice(tempIndex,0,tempStars);
             tempIndex=undefined;
+        }
+        if(window.index){
+            stars.splice(window.index-1,0,tempStars);
+            window.index=undefined;
         }
     });
     (function () {

@@ -382,6 +382,12 @@ $(".searchBar>li").click(function(){
         default:
             break;
     };
+    if(window.index){
+        tempStars=stars[window.index-1];
+        stars.splice(window.index-1,1);
+        renderer.render(scene, camera);
+    }
+    id=requestAnimationFrame(move);
 });
 
 function onDocumentMouseDown(event){
