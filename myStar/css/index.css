@@ -432,3 +432,52 @@ body .main .cover .coverWrapper .wrapper .content .content4 .starPic {
   height: 100%;
   background: transparent;
 }
+html .main .guidePage,
+body .main .guidePage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+html .main .guidePage .first,
+body .main .guidePage .first {
+  height: 100%;
+  position: relative;
+}
+html .main .guidePage .first img,
+body .main .guidePage .first img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+html .main .guidePage .first .rightarrow,
+body .main .guidePage .first .rightarrow {
+  top: 12.16rem;
+  left: 14.66666667rem;
+  width: 3.68rem;
+  height: 0.77333333rem;
+}
+html .main .guidePage .first .iKnow,
+body .main .guidePage .first .iKnow {
+  top: 14.66666667rem;
+  left: 7.33333333rem;
+  width: 5.33333333rem;
+  height: 2.66666667rem;
+}
+html .main .guidePage .first .leftarrow,
+body .main .guidePage .first .leftarrow {
+  top: 4.66666667rem;
+  left: 5.66666667rem;
+  width: 3.4rem;
+  height: 6.57333333rem;
+}
+html .main .guidePage .first .text1,
+body .main .guidePage .first .text1 {
+  top: 11.49333333rem;
+  left: 5.66666667rem;
+  width: 8.68rem;
+  height: 2.76rem;
+}

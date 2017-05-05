@@ -67,7 +67,7 @@ function init() {
     /*orbitControls*/
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableKeys=true;//允许键盘控制
-    controls.minDistance=0;
+    controls.minDistance=24;
     controls.maxDistance=800;
     controls.target = scene.position;
 
@@ -480,7 +480,6 @@ function onDocumentMouseDown(event){
                 stars.splice(tempIndex,1);
                 renderer.render(scene, camera);
             }
-            console.log(name,tempIndex);
             /*if(name=="太阳"){
              camera.lookAt(new THREE.Vector3(0, 0, 0));
              }
