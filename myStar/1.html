@@ -43,7 +43,7 @@
 </div>
 
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
-    <div class="coverPage" style="background: url('img/cover.jpeg');background-size:100% 100% ">
+    <div class="coverPage" style="background: url('img/index/2.jpg');background-size:100% 100% ">
         <!--<img src="img/cover.jpeg" alt="">-->
         <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
     </div>
@@ -89,7 +89,7 @@
                 </li>
             </ul>
         </div>
-        <canvas id="main" bn-document-click="handleClick( $event )"></canvas>
+        <canvas id="main" bn-document-click="handleClick( $event )">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
     </div>
     <div class="cover">
         <div class="coverWrapper">
@@ -716,8 +716,17 @@
             window.index=undefined;
         }
     });
-    (function () {
+    /*(function () {
         orient();
+    })()*/
+
+    (function () {
+        $('.judge').css('visibility','hidden');
+        $('.main').css('visibility','visible');
+        setTimeout(function () {
+            $('.coverPage').fadeOut('slow');
+            $('.universe').css('visibility','visible');
+        },3000)
     })()
     function orient() {
         if ((window.orientation == 90 || window.orientation == -90)||(window.innerWidth>window.innerHeight)) {
@@ -766,9 +775,9 @@
      return false;
      }
      }*/
-    $(window).bind( 'orientationchange', function(e){
+    /*$(window).bind( 'orientationchange', function(e){
         orient();
-    });
+    });*/
     /*var canvas2=document.getElementById('starConstruct');
      var content4=document.querySelector(".content4");
      /!*canvas2.style.width=content4.clientWidth;
