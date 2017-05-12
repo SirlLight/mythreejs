@@ -43,7 +43,7 @@
 </div>
 
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
-    <div class="coverPage" style="background: url('img/index/2.jpg');background-size:100% 100% ">
+    <div class="coverPage" style="background: url('img/index/cover.jpg');background-size:100% 100% ">
         <!--<img src="img/cover.jpeg" alt="">-->
         <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
     </div>
@@ -186,10 +186,9 @@
         }
         if($(this).val()==4){
             (function () {
-                /* ==== definitions ==== */
                 var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1,2];
                 var Poly,Diapo,init,run;
-                // ---- poly constructor ----
+                // 面板构造函数poly constructor
                 Poly = function (parent, face) {
                     this.parent = parent;
                     this.ctx    = ctx;
@@ -239,7 +238,7 @@
                 init = function (json) {
                     // draw poly primitive
                     Poly.prototype.drawPoly = ge1doot.transform3D.drawPoly;
-                    // ---- init screen ----
+                    // ---- 初始化init screen ----
                     scr = new ge1doot.Screen({
                         container: document.querySelector(".starPic")
                     });
