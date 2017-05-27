@@ -73,6 +73,38 @@ html,body {
     position: relative;
     visibility: hidden;
     /*background: #ea445a;*/
+    .guide{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: larger;
+      color: white;
+      .guideWrapper{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p{
+          margin-bottom: 85/75rem;
+          span{
+            margin-top: 40/75rem;
+            display:block;
+            font-size: small;
+          }
+        }
+        img{
+          margin-top: 10/75rem;
+          width: 400/75rem;
+          height: 200/75rem;
+        }
+      }
+    }
     .coverPage{
       position: absolute;
       top: 0;

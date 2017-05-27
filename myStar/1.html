@@ -43,7 +43,7 @@
 </div>
 
 <div class="main" ng-app="myApp" ng-controller="myCtrl">
-    <div class="coverPage" style="background: url('img/index/cover.jpg');background-size:100% 100% ">
+    <div class="coverPage">
         <!--<img src="img/cover.jpeg" alt="">-->
         <!--<button onclick="launchFullscreen(document.documentElement)" style="background: #ffffff">全屏？</button>-->
     </div>
@@ -158,6 +158,16 @@
         </div>
         <div class="second">
             <img class="tuoluoyi" src="img/ui/rightArrow1.png" alt="">
+        </div>
+    </div>
+    <div class="guide">
+        <div class="guideWrapper">
+            <p>鼠标/触屏：拖拽屏幕可漫游太阳系</p>
+            <p>
+                键盘：使用WASD或者↑←↓→箭头可漫游太阳系
+                <span>（点击空格键可恢复初始视野）</span>
+            </p>
+            <img src="img/ui/iKnow.png" alt="">
         </div>
     </div>
 </div>
@@ -453,58 +463,58 @@
                     [
                         // north
                         {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/venus/12.jpg', x:0, y:0, z:1500, nx:0, nz:1},
                         {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
                         // east
-                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        {img:'img/gallery/venus/2.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/venus/3.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/venus/7.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
                         // south
-                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/venus/4.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/venus/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/venus/10.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
                         // west
-                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'img/gallery/venus/5.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/venus/6.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
                         {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
                     ],
                     //地球
                     [
                         // north
                         {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/earth/5.jpg', x:0, y:0, z:1500, nx:0, nz:1},
                         {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
                         // east
-                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        {img:'img/gallery/earth/2.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/earth/6.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/earth/7.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
                         // south
-                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/earth/9.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/earth/10.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/earth/4.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
                         // west
                         {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'img/gallery/earth/1.png', x:-1500, y:0, z:0, nx:1, nz:0},
                         {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
                     ],
                     //火星
                     [
                         // north
                         {img:'', x:-1000, y:0, z:1500, nx:0, nz:1},
-                        {img:'img/gallery/sun/17.jpg', x:0, y:0, z:1500, nx:0, nz:1},
+                        {img:'img/gallery/mars/10.jpg', x:0, y:0, z:1500, nx:0, nz:1},
                         {img:'', x:1000,  y:0, z:1500, nx:0, nz:1},
                         // east
-                        {img:'img/gallery/sun/7.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-                        {img:'img/gallery/sun/10.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-                        {img:'img/gallery/sun/11.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+                        {img:'img/gallery/mars/1.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+                        {img:'img/gallery/mars/3.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+                        {img:'img/gallery/mars/5.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
                         // south
-                        {img:'img/gallery/sun/2.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/12.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-                        {img:'img/gallery/sun/3.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mars/4.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mars/7.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+                        {img:'img/gallery/mars/11.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
                         // west
-                        {img:'', x:-1500, y:0, z:-1000, nx:1, nz:0},
-                        {img:'img/gallery/sun/15.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-                        {img:'', x:-1500, y:0, z:1000, nx:1, nz:0}
+                        {img:'img/gallery/mars/6.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+                        {img:'img/gallery/mars/8.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+                        {img:'img/gallery/mars/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
                     ],
                     //木星
                     [
@@ -685,6 +695,9 @@
             });
         }
     });
+    $('.guideWrapper>img').click(function () {
+        $('.guide').css('visibility','hidden');
+    });
     $('.play').click(function () {
         if(document.getElementById('media').paused){
             document.getElementById('media').play();
@@ -715,65 +728,40 @@
             window.index=undefined;
         }
     });
-    /*(function () {
-        orient();
-    })()*/
-
     (function () {
-        $('.judge').css('visibility','hidden');
-        $('.main').css('visibility','visible');
-        setTimeout(function () {
-            $('.coverPage').fadeOut('slow');
-            $('.universe').css('visibility','visible');
-        },3000)
+        orient();
     })()
+
     function orient() {
         if ((window.orientation == 90 || window.orientation == -90)||(window.innerWidth>window.innerHeight)) {
             //横屏
+            $('.coverPage').css('background','url("img/index/cover.jpg")');
+            $('.coverPage').css('background-size','100% 100%');
+            $('.guide').css('visibility','hidden');
             $('.judge').css('visibility','hidden');
             $('.main').css('visibility','visible');
             setTimeout(function () {
                 $('.coverPage').fadeOut('slow');
+                $('.guide').css('visibility','visible');
                 $('.universe').css('visibility','visible');
             },3000)
             return false;
         }
         else if ((window.orientation == 0 || window.orientation == 180)||(window.innerWidth<window.innerHeight)) {
             //竖屏
-            $('.judge').css('visibility','visible');
-            $('.main').css('visibility','hidden');
-            $('.coverPage').fadeIn('slow');
-            $('.universe').css('visibility','hidden');
+            $('.coverPage').css('background','url("img/index/2.jpg")');
+            $('.coverPage').css('background-size','100% 100%');
+            $('.guide').css('visibility','hidden');
+            $('.judge').css('visibility','hidden');
+            $('.main').css('visibility','visible');
+            setTimeout(function () {
+                $('.coverPage').fadeOut('slow');
+                $('.guide').css('visibility','visible');
+                $('.universe').css('visibility','visible');
+            },3000)
             return false;
         }
     }
-    /*function orient() {
-     if (window.innerWidth>window.innerHeight) {
-     //横屏
-     /!*$('.judge').css('visibility','hidden');
-     $('.main').css('visibility','visible');
-     *!/
-     alert('heng');
-     $('body').css('transform','rotate(0deg)');
-     return false;
-     }
-     else if (window.innerWidth<window.innerHeight) {
-     //竖屏
-     //$('.judge').css('visibility','visible');
-     var docWidth=$('html')[0].offsetWidth;
-     var docHeight=$('html')[0].offsetHeight;
-     $('body').css('width',docWidth+'px');
-     $('body').css('height',docHeight+'px');
-     $('.main').css('width',docHeight+'px');
-     $('.main').css('height',docWidth+'px');
-     $('.universe').css('width',docHeight+'px');
-     $('.universe').css('height',docWidth+'px');
-     $('.universe>canvas').css('width',docHeight+'px');
-     $('.universe>canvas').css('height',docWidth+'px');
-     $('body').css('transform','rotate(90deg)');
-     return false;
-     }
-     }*/
     /*$(window).bind( 'orientationchange', function(e){
         orient();
     });*/
