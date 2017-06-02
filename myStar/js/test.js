@@ -700,11 +700,9 @@ function moveEachStar(star) {
     if (star.angle > Math.PI * star.distance) {
         star.angle -= Math.PI * star.distance;
     }
-
     //自转
     star.Mesh.rotation.y += .03;
     sunMaterial.rotation += .1;
-
     star.Mesh.position.set(star.distance * Math.sin(star.angle), 0, star.distance * Math.cos(star.angle));
 
     /*ring*/

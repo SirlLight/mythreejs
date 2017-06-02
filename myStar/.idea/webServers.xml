@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="603a588d-2e7e-4b88-b863-61586035bbdd" name="localhostIIS" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="D:\myProject\mythreejs\myStar" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
